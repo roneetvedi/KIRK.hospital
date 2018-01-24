@@ -1,0 +1,51 @@
+page-aboutus {
+    .toolbar-background{
+        background: linear-gradient(left,#26568c,#91c2ff);
+        background: -webkit-linear-gradient(left,#26568c,#91c2ff);
+        background: -moz-linear-gradient(left,#26568c,#91c2ff);
+        }
+    
+    button.backbtn {
+        background-color: transparent;
+        color: #fff;
+        font-size: 23px;
+    }
+
+
+    .button{
+    
+    background-color: transparent;
+    box-shadow: none;
+    font-size: 20px;
+    color: #fff;
+
+    }
+
+    .btn:hover {
+        background-color: transparent;
+
+        }
+    
+    h2 {
+        font-size: 15px;
+        text-align: justify;
+        padding: 0 9px;
+        font-weight: normal;
+        margin-bottom: 0;
+    }
+    
+     h4 {
+        font-size: 20px;
+        margin-top: 5px;
+        margin-left: -53px;
+        margin-bottom: 0;
+    }
+    
+    h5 {
+        font-size: 15px;
+        text-align: justify;
+        font-weight: normal;
+        margin-top: 10px;
+        padding: 0 9px;
+    }
+    }

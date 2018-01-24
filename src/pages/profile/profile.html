@@ -1,0 +1,182 @@
+<ion-header class="header-bg" >
+
+
+
+
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-1> <button ion-button menuToggle left>
+            <ion-icon class="menu" name="menu"></ion-icon>
+          </button></ion-col>
+        <ion-col col-9>  <ion-title><h4>My Profile</h4></ion-title></ion-col>
+        <ion-col col-1>
+          <div class="notfctn">
+          <button ion-button  class="btn">
+            <ion-icon (click)="gtnotifctn()" class="not" name="notifications"></ion-icon>
+            <div class="txt"><p>1</p></div>
+        </button></div></ion-col>
+        <ion-col col-1>
+          <button ion-button  class="btn">
+            <ion-icon (click)="edit()" class="crt" name="ios-create-outline"></ion-icon>
+        </button></ion-col>
+      </ion-row>
+    </ion-grid>
+      
+    
+  
+<ion-grid class="profile-txt">
+  <ion-row>
+    <ion-col col-12>
+      <div class="prflbox">
+      <div class="profile-img">
+       <img *ngIf="this.prfimage == '' || this.prfimage == undefined"  class="pic" src="assets/imgs/no-user-image.gif"/>
+          <img *ngIf="this.prfimage != ''" class="pic" [src]="this.prfimage"/></div>
+        <!--<div class="icn-pls" (click)="edit()"> <ion-icon name="add-circle"></ion-icon></div>-->
+        </div>
+
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-12>
+      <h2>{{this.editname}}</h2>
+      <p>{{this.edittype}}  | {{this.editcity}},{{this.editcountry}}</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <h5>${{this.editcharges}}/hour</h5>
+          </ion-col>
+          <ion-col col-6>
+              <h3>{{this.edittime}}</h3>
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-header no-border>
+    <ion-toolbar>
+      <button ion-button menuToggle left>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Header</ion-title>
+      <button ion-button menuToggle right>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-toolbar>
+  </ion-header> -->
+
+<ion-content class="prfl">
+ <ion-grid class="listgrid">
+   <ion-row>
+     <ion-col col-12 no-padding>
+       <div class="prfl-detl">
+         <ion-grid>
+           <ion-row>
+           <ion-col col-1>
+             <img class="dtl" src="assets/imgs/edctn.png">
+           </ion-col>
+           <ion-col col-11>
+             <h6>Education </h6>
+           </ion-col>
+          </ion-row>
+         </ion-grid>
+         <ul>
+           <li>{{this.editedu}}</li>
+           <!--<li>FPFA(USA) PIerre Academey -2014</li>-->
+         </ul>
+       </div>
+
+       <div class="prfl-detl">
+        <ion-grid>
+          <ion-row>
+          <ion-col col-1>
+            <img class="dtl" src="assets/imgs/exprnce.png">
+          </ion-col>
+          <ion-col col-11>
+            <h6>Experience </h6>
+          </ion-col>
+         </ion-row>
+        </ion-grid>
+        <ul>
+          <li>{{this.editexp}}</li>
+         
+        </ul>
+      </div>
+
+      <div class="prfl-detl">
+        <ion-grid>
+          <ion-row>
+          <ion-col col-1>
+            <img class="dtl" src="assets/imgs/mdl.png">
+          </ion-col>
+          <ion-col col-11>
+            <h6>Awards and Recognitions </h6>
+          </ion-col>
+         </ion-row>
+        </ion-grid>
+        <ul>
+          <li>{{this.editawrd}}</li>
+          <!--<li>International Integration Child Specilist Training</li>-->
+        </ul>
+      </div>
+     </ion-col>
+   </ion-row>
+ </ion-grid>
+ <ion-grid >
+   <ion-row>
+     <ion-col col-12>
+       <h1>Gallery</h1>
+       <ion-slides>
+         <ion-slide>
+           <ion-grid>
+             <ion-row>
+               <ion-col col-4>
+                  <div class="acheivmnt">
+                      <img class="achv" src="assets/imgs/achv1.png">
+                    </div>
+               </ion-col>
+               <ion-col col-4>
+                  <div class="acheivmnt">
+                      <img class="achv" src="assets/imgs/achv2.png">
+                    </div>
+               </ion-col>
+               <ion-col col-4>
+                  <div class="acheivmnt">
+                      <img class="achv" src="assets/imgs/achv2.png">
+                    </div>
+               </ion-col>
+             </ion-row>
+           </ion-grid></ion-slide>
+
+        <ion-slide>
+            <ion-grid>
+                <ion-row>
+                  <ion-col col-4>
+                     <div class="acheivmnt">
+                         <img class="achv" src="assets/imgs/achv1.png">
+                       </div>
+                  </ion-col>
+                  <ion-col col-4>
+                     <div class="acheivmnt">
+                         <img class="achv" src="assets/imgs/achv2.png">
+                       </div>
+                  </ion-col>
+                  <ion-col col-4>
+                     <div class="acheivmnt">
+                         <img class="achv" src="assets/imgs/achv2.png">
+                       </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+        </ion-slide>
+       </ion-slides>
+     </ion-col>
+   </ion-row>
+ </ion-grid>
+
+</ion-content>

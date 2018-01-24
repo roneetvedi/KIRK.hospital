@@ -1,0 +1,181 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.side-menudoc{
+.dr-image {
+    position: relative;
+    overflow: hidden;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    margin-top: 45px;
+
+img.dr-img {
+    width: 100%;
+    height: 100%;
+}
+}
+
+h2 {
+    font-size: 17px;
+    margin-left: 7px;
+    margin-top: 45px;
+}
+
+h3 {
+    margin-left: 7px;
+    font-size: 14px;
+    color: #8f8f8f;
+    font-weight: normal;
+    padding-bottom: 14px;
+    margin-bottom: 2px;
+    border-bottom: 1px solid;
+}
+
+
+button.sidebtn {
+    padding: 27px 0;
+}
+
+ 
+
+// .sidemenu-txt {
+//     background-color: #000;
+// }
+}
+
+.sidemenu-txt {
+    background: -webkit-linear-gradient(left,#26568c,#729acc);
+    padding: 9px 0;
+h6{
+    color:#fff;
+    font-weight: normal;
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.lefty {
+    font-size: 30px;
+    margin-top: 10px;
+    color: #fff;
+    font-weight: normal;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+}
+.side-menubar{
+img.hm {
+    width: 8%;
+}
+
+.label:hover{
+    background-color: #f6f6f6;
+    padding: 14px 0;
+}
+
+span.img-menu {
+    padding: 0 10px;
+}
+
+ button:nth-child(9) ion-icon.kb.icon.icon-md.item-icon:after {
+   content: "\f13e";
+    color: #c1c1c1;
+    font-size: 20px;
+    left: 0;
+    .span.ttl_mnnu{
+        color:#000;
+    }
+
+   }
+   
+    button:nth-child(6) ion-icon.kb.icon.icon-md.item-icon:after {
+   content: "\f2ab";
+    color: #c1c1c1;
+    font-size: 20px;
+    left: 0;
+    .span.ttl_mnnu{
+        color:#000;
+    }
+
+   }
+   
+   
+   
+   
+      button:nth-child(8) ion-icon.kb.icon.icon-md.item-icon:after {
+   content: "\f311";
+    color: #c1c1c1;
+    font-size: 20px;
+    left: 0;
+    .span.ttl_mnnu{
+        color:#000;
+    }
+
+   }
+   
+/*      button:nth-child(9) ion-icon.kb.icon.icon-md.item-icon:after {
+   content: "\f31a";
+    color: #c1c1c1;
+    font-size: 20px;
+    left: 0;
+    .span.ttl_mnnu{
+        color:#000;
+    }
+
+   }*/
+   
+   
+
+   button:nth-child(10){
+    background: -webkit-linear-gradient(left,#26568c,#729acc);
+/*    padding: 9px 0;*/
+    padding: 9px 0 9px 14px;
+    color: #fff;
+    margin-top: 91px;
+
+    .icon{
+        float: right;
+    }
+    .item-inner{
+        border-bottom: none;
+    }
+}
+
+.side-menubar button:last-child .kb {
+    font-weight: bold;
+    text-decoration: underline;
+float: right ;
+   
+}
+
+button:hover {
+    background-color: #f6f6f6;
+}
+
+// .icon:last-child {
+//     float: right;   
+ 
+// }
+
+
+}
+

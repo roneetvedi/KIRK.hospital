@@ -1,0 +1,39 @@
+
+ <ion-header no-border class="header">
+  <ion-toolbar class="logo">
+     <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <button  class="backbtn" (click)="backtoinfrmtnpg()">
+            <ion-icon class="customIcon" name="arrow-back"></ion-icon></button>
+        </ion-col>
+        <ion-col col-10>
+            <ion-title><h4>About Us</h4></ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col col-12>
+        
+<!--      <h2>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+ Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</h2>
+ <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+ Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+ when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+ It has survived not only five centuries, but also the leap into electronic typesetting, 
+ remaining essentially unchanged. It was popularised in the 1960s with the release of 
+ Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+ software like Aldus PageMaker including versions of Lorem Ipsum.</h5>-->
+<div>{{datadisp?.description}}</div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header  no-border class="header" >
+  <ion-toolbar align-title="center">
+    
+    <button ion-button menuToggle>
+      <ion-icon class="menu" name="menu"></ion-icon>
+    </button>
+     <ion-title> <h4>Information</h4></ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  
+<ion-grid>
+  <ion-row>
+    <ion-col col-11>
+<h2 (click)="gotoabout()">About Us</h2>
+    </ion-col>
+    <ion-col col-1>
+      <ion-icon class="rytarw" name="ios-arrow-forward"></ion-icon>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-11>
+<h2 (click)="gotopolicy()">Privacy Policy</h2>
+    </ion-col>
+    <ion-col col-1>
+      <ion-icon class="rytarw" name="ios-arrow-forward"></ion-icon>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-11>
+<h2 (click)="gototerms()">Terms and Conditions</h2>
+    </ion-col>
+    <ion-col col-1>
+      <ion-icon class="rytarw" name="ios-arrow-forward"></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

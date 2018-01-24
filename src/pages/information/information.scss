@@ -1,0 +1,48 @@
+page-information {
+
+    .toolbar-background{
+        background: linear-gradient(left,#26568c,#91c2ff);
+        background: -webkit-linear-gradient(left,#26568c,#91c2ff);
+        background: -moz-linear-gradient(left,#26568c,#91c2ff);
+        }
+    
+    .button{
+        color: #fff;
+        background-color: transparent;
+        box-shadow: none;
+        float: right;
+        }
+    
+    .back-button.show-back-button {
+        display: none;
+            }
+    
+    .menu{
+        color: #fff;
+            } 
+       
+ h4 {
+        font-size: 20px;
+        margin-top: 5px;
+     margin-left: -50px;
+        margin-bottom: 0;
+    }
+    
+    h2 {
+        margin-top: 0;
+        font-size: 16px;
+        margin-bottom: 2px;
+            }
+
+    h2:hover {
+       color:#4172a9;
+            }
+
+    .rytarw{
+        margin-top: 1px;
+        font-size: 19px;
+            }
+
+ }
+
+ 

@@ -1,0 +1,68 @@
+
+ <ion-header no-border class="header">
+  <ion-toolbar class="logo">
+      <button ion-button menuToggle>
+          <ion-icon class="menu" name="menu"></ion-icon>
+        </button>
+ <ion-title ><h4>Contact Us</h4></ion-title>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form  #signup_Form="ngForm" >
+<ion-grid >
+  <ion-row>
+    <ion-col col-12>
+<!--      <p>We are happy to answer any questions you have or provide you with an appropriate answer.
+         Just send as a message in the form below with any questions you may have.</p>-->
+         </ion-col></ion-row>
+         <ion-row><ion-col col-12>
+        <ion-list class="cnctct-list">
+            <!-- <ion-grid class="inpt-signp">
+            
+              <ion-row>
+                  <ion-col col-1 no-padding> <img class="mlimg" src="assets/imgs/mail.png"></ion-col>
+                  <ion-col col-11> -->
+              <ion-item>        
+                      <!--<ion-input type="mail" value="" placeholder="Name"></ion-input>-->
+                      <ion-input type="text" placeholder=" name"  pattern="[a-zA-Z ]+" [(ngModel)]="data.name" name="name" type="text"  id="name" #name="ngModel" required></ion-input> 	    
+                    </ion-item>
+                  <!-- </ion-col></ion-row>
+                  <ion-row>
+                      <ion-col col-1 no-padding> <img class="inpimg" src="assets/imgs/pswrd.png"></ion-col>
+                      <ion-col col-11> -->
+                  <ion-item>        
+                      <ion-input type="email" [(ngModel)]="data.email" name="email" placeholder="Email Address"   #email='ngModel' required pattern='^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$'></ion-input>   
+                      <!--<ion-input type="password" value="" placeholder="Email Address"></ion-input>-->
+                        </ion-item>
+
+            <ion-item>        
+              <ion-input type="number" placeholder="Number"   [(ngModel)]="data.number" name="number" id="number" #number="ngModel" required></ion-input> 	    
+
+            </ion-item>    
+            
+            <ion-item>        
+                      <ion-input type="text" [(ngModel)]="data.subject" name="subject" placeholder="Message"   #subject='ngModel' ></ion-input>   
+                      <!--<ion-input type="password" value="" placeholder="Email Address"></ion-input>-->
+                        </ion-item>
+                      <!-- </ion-col></ion-row>
+                      <ion-row>
+                          <ion-col col-12>
+                            <ion-list class="chkbx"><ion-item>
+                              <ion-checkbox class="checkbox" ></ion-checkbox>
+                                <ion-label>Remember me</ion-label></ion-item></ion-list>
+                       </ion-col></ion-row>   
+                            
+    </ion-grid> -->
+ 
+    </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col col-12>
+          <button ion-button full color="blue" class="btnblu" (click)="signup(signup_Form)">Submit</button>
+      </ion-col>
+      </ion-row>
+</ion-grid>
+    </form>
+</ion-content>

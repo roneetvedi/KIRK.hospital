@@ -1,0 +1,97 @@
+page-filter {
+
+  
+
+    button.backbtn {
+        background-color: transparent;
+        color: #fff;
+        font-size: 24px;
+        margin-top: 7px;
+        float: right;
+    }
+
+    .btnblu {
+        color: #fff;
+        border-radius: 40px;
+        width: 80%;
+        margin: 0 auto;
+        display: table;
+        text-transform: none;
+        padding: 19px 0;
+        font-size: 18px;
+        font-weight: normal;
+        box-shadow: 0 2px 8px 0 #000;
+  }
+
+  .size_adj {
+        width: 100%;
+        height: 100%;
+        background: rgba(56, 56, 56, 0.92);
+}
+
+// .show-page{
+   
+//  }
+
+h5 {
+    color: #fff;
+    font-size: 22px;
+    margin-left: 27px;
+    }
+
+ .fltrlist {
+     .item {
+    padding-left: 16px;
+    padding-right: 0;
+    position: relative;
+    font-size: 19px;
+    font-weight: 500;
+    text-transform: none;
+    background-color:transparent;
+    border: none;
+ }
+ 
+ .input-wrapper {
+    text-align: left;
+    margin-left: 55px;
+    color: #fff;
+}
+
+.radio-icon {
+    left: 0;
+    top: 0;
+    margin: 0;
+    border-radius: 50%;
+    position: relative;
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #ffffff;
+    float: left;
+}
+
+.radio{
+    position: absolute;
+    display: block;
+    top: 8px;
+    left: 32px;
+    border-color: #ffffff;
+}
+
+.item-block .item-inner {
+    padding-right: 8px;
+    border: none;
+}
+}
+
+ion-label {
+    margin-left: 12px;
+    font-weight: normal;
+}
+
+// .item-radio-checked ion-label {
+//     color: #f5f5f5;
+// }
+}

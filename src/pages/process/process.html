@@ -1,0 +1,262 @@
+<ion-header class="header-bg" align-title="center" >
+
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <button  class="backbtn" (click)="backtosigin()">
+            <ion-icon class="customIcon" name="arrow-back"></ion-icon></button>
+        </ion-col>
+        <ion-col col-10>
+            <ion-title><h4>Process</h4></ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+      
+    
+      
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="prfl">
+    <form #heroForm="ngForm">
+    <ion-list class="processdtl">
+
+ <ion-grid no-padding class="listgrid">
+    <ion-row>
+        <ion-col col-12>
+          <div class="prflbox">
+            <div class="profile-img">
+             <img *ngIf="this.prfimage == '' || this.prfimage == undefined"  class="pic" src="assets/imgs/no-user-image.gif"/>
+          <img *ngIf="this.prfimage != ''" class="pic" [src]="this.prfimage"/></div>
+              <div class="icn-pls" (click)="openActionSheet()"> <ion-icon name="add-circle"></ion-icon></div>
+              </div>
+        </ion-col>
+      </ion-row>
+   <ion-row>
+     <ion-col col-12 no-padding><h3>Basic Information</h3></ion-col>
+</ion-row>
+
+      
+           <ion-row>
+              <ion-col col-12 no-padding>    
+                  <div class="prcsbx">
+                  <!-- <label></label> -->
+                  <ion-item class="slct">
+                    <ion-label class="stts">Status</ion-label>
+                    <ion-select type="text" name="status" [(ngModel)]="data.status" id="status" #status="ngModel">
+                      <ion-option>I am Available</ion-option>
+                      <ion-option>Not available</ion-option>
+                      
+                    </ion-select>
+                  </ion-item>
+                </div>
+                  </ion-col></ion-row>
+                  <ion-row>
+           <ion-col col-12 no-padding>    
+              <div class="prcsbx">
+                  <label>Description</label>        
+              <ion-item>
+              
+                <ion-input type="text" name="description" [(ngModel)]="data.description" id="description" #description="ngModel"></ion-input>
+            </ion-item></div></ion-col></ion-row>
+                <!-- </ion-list> -->
+       </ion-grid>
+
+
+       <ion-grid no-padding class="listgrid">
+          <ion-row>
+            <ion-col col-12 no-padding><h3>I am Available</h3></ion-col>
+       </ion-row>
+             
+                  <ion-row>
+                     <ion-col col-12 no-padding>    
+                         <div class="prcsbx">
+                           <ion-grid no-padding>
+                             <ion-row>
+                               <ion-col col-2>
+                                  <h5 (click)="calndr()">Days</h5>
+                                </ion-col>
+                                <ion-col col-5>
+                                    <ion-item class="slct-dt">
+                                        
+   <ion-label>From</ion-label>
+    <!-- <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+                                      </ion-item> -->
+                                      <!-- <div class="prcsbx"> -->
+                                         
+                                          <!-- <ion-item class="slct"> -->
+                                            <!-- <ion-label>Status</ion-label> -->
+                                            <ion-select [(ngModel)]="data.days" id="days" name="days" #days="ngModel">
+                                              <ion-option>Monday</ion-option>
+                                              <ion-option>Tuesday</ion-option>
+                                              <ion-option>Wednesday</ion-option>
+                                              <ion-option>Thursday</ion-option>
+                                              <ion-option>Friday</ion-option>
+                                              <ion-option>Saturday</ion-option>
+                                              <ion-option>Sunday</ion-option>
+                                              
+                                            </ion-select>
+                                          </ion-item>
+                                        <!-- </div>                                 -->
+                                  </ion-col> 
+                                  <ion-col col-5>
+                                      <ion-item class="slct-dt">
+        <ion-label>End</ion-label>
+   <!-- <ion-datetime displayFormat="MM/DD/YYYY" ></ion-datetime> -->
+   <ion-select [(ngModel)]="data.enddays" name="enddays" id="enddays" #enddays="ngModel">
+ 
+      <ion-option>Monday</ion-option>
+      <ion-option>Tuesday</ion-option>
+      <ion-option>Wednesday</ion-option>
+      <ion-option>Thursday</ion-option>
+      <ion-option>Friday</ion-option>
+      <ion-option>Saturday</ion-option>
+      <ion-option>Sunday</ion-option>
+      
+    </ion-select>
+                                        </ion-item>
+                                    </ion-col> 
+                              </ion-row>
+                            </ion-grid>
+                                    
+                            </div>
+                         </ion-col></ion-row>
+                         <ion-row>
+                  <ion-col col-12 no-padding>    
+                     <div class="prcsbx">
+                        <ion-grid no-padding>
+                            <ion-row>
+                              <ion-col col-2>
+                                 <h5>Timing</h5>
+                               </ion-col>
+                               <ion-col col-5>
+                                  <ion-item class="slct-dt">
+                                        
+                                      <ion-label>From</ion-label>
+                                   
+                                           <ion-select [(ngModel)]="data.starttime" id="starttime" name="starttime" #starttime="ngModel">
+                                     <ion-option>7:00 AM - 3:00 PM</ion-option>
+                                      <ion-option>3:00 PM -11:00 PM </ion-option>
+                                  <ion-option>11:00 PM - 7:00 AM </ion-option>
+                                  <ion-option>7:00 AM - 7:00 PM</ion-option>
+                                           
+                                                                                 
+                              </ion-select>
+                                 </ion-item>
+                                 </ion-col> 
+<!--                                 <ion-col col-5>
+                                      <ion-item>
+                                         
+                                        <ion-label>End</ion-label>
+                                        <ion-datetime displayFormat="HH:mm:ss"></ion-datetime> 
+                                        <ion-item class="slct-dt">
+                                        
+                                            <ion-label>From</ion-label>
+                                        
+                                                 <ion-select [(ngModel)]="data.endtime" id="endtime" name="endtime" #endtime="ngModel">
+                                                    <ion-option>7-3:am  </ion-option>
+                                                    <ion-option>3-11:pm</ion-option>
+                                                <ion-option>11-7:overnight </ion-option>
+                                                 <ion-option>7-7:12 hour </ion-option>
+                                                                                       
+                                    </ion-select>
+                                                                   
+                                       </ion-item>
+                                   </ion-col> -->
+                             </ion-row>
+                           </ion-grid>
+                    </div></ion-col></ion-row>
+           
+                <ion-row>
+           <ion-col col-12 no-padding>    
+              <div class="prcsbx">
+                  <label>City</label>        
+              <ion-item>
+              
+                <ion-input type="text" [(ngModel)]="data.city" name="city" #city="ngModel"></ion-input>
+            </ion-item></div></ion-col></ion-row>
+           
+              <ion-row>
+              <ion-col col-12 no-padding>    
+                  <div class="prcsbx">
+                  <!-- <label></label> -->
+                  <ion-item class="slct">
+                    <ion-label class="stts">Country</ion-label>
+                    <ion-select [(ngModel)]="data.country" name="country" id="country" required  #country="ngModel">
+<!--                      <ion-option>Available</ion-option>
+                      <ion-option>Not available</ion-option>-->
+                     <ion-option *ngFor="let name of countries" value="{{name.Country.name}}">{{name.Country.name}}</ion-option> 
+                    </ion-select>
+                  </ion-item>
+                </div>
+                  </ion-col></ion-row>
+           
+                       <!-- </ion-list> -->
+              </ion-grid>
+</ion-list>
+
+
+ <ion-grid >
+   <ion-row>
+     <ion-col col-12>
+       <h1>Gallery</h1>
+       <ion-slides>
+         <ion-slide>
+           <ion-grid>
+             <ion-row>
+               <ion-col col-4>
+                  <div class="acheivmnt">
+                      <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
+                    </div>
+               </ion-col>
+               <ion-col col-4>
+                  <div class="acheivmnt">
+                      <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
+                    </div>
+               </ion-col>
+               <ion-col col-4>
+                  <div class="acheivmnt">
+                      <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
+                    </div>
+               </ion-col>
+             </ion-row>
+           </ion-grid></ion-slide>
+
+        <ion-slide>
+            <ion-grid>
+                <ion-row>
+                  <ion-col col-4>
+                      <div class="acheivmnt">
+                          <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
+                        </div>
+                  </ion-col>
+                  <ion-col col-4>
+                      <div class="acheivmnt">
+                          <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
+                        </div>
+                  </ion-col>
+                  <ion-col col-4>
+                      <div class="acheivmnt">
+                          <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
+                        </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+        </ion-slide>
+       </ion-slides>
+     </ion-col>
+   </ion-row>
+ </ion-grid>
+ <ion-grid>
+   <ion-row>
+
+     <ion-col col-12> 
+  <div class="updtbtn">
+   <button (click)="gotolist(heroForm)" ion-button full color="blue" class="btnblu" [disabled]="!heroForm.form.valid" >Submit</button></div>
+  </ion-col>
+   </ion-row>
+ </ion-grid>
+    </form>
+</ion-content>

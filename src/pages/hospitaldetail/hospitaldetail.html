@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-navbar>
+    <ion-grid no-padding>
+      <ion-row>
+        <ion-col col-2>
+       <button  class="backbtn" (click)="bktolist()">
+    <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+</button></ion-col>
+<ion-col col-10>  <ion-title><h4>Hospital Details</h4></ion-title></ion-col>
+  
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="border">
+      <div class="hsptldetail">
+  <ion-grid  no-padding>
+    <ion-row>
+      <ion-col col-12 no-padding>
+<!--          <div class="hsptldetail">-->
+        <div class="prfl-detl" (click)="detail()" >
+          <ion-grid>
+            <ion-row>
+            <ion-col col-7>
+              <h6> {{this.hosptitle}}</h6>
+            </ion-col>
+            <ion-col col-5>
+              <div class="heart-bx">
+                <ion-icon class="heart" name="heart"></ion-icon></div>
+              </ion-col>
+           </ion-row>
+        <ion-row>
+          <ion-col col-1>  <ion-icon class="pin" name="pin"></ion-icon></ion-col>
+          <ion-col col-5><h5>{{this.hospcity}},{{this.hospcountry}}</h5></ion-col>
+          <ion-col ocl-6>
+            <div class="multistars">
+              <ion-icon class="star" name="star"></ion-icon>
+              <ion-icon class="star" name="star"></ion-icon>
+              <ion-icon class="star" name="star"></ion-icon>
+              <ion-icon class="star" name="star"></ion-icon>
+              <ion-icon class="star" name="star"></ion-icon>
+
+            </div>
+          </ion-col>
+        </ion-row>
+               
+          </ion-grid>
+        </div>
+      </ion-col>
+    </ion-row>
+   <ion-row>
+      <ion-col col-12>
+        <div class="txt">
+        <h2>Description</h2>
+            <p>{{this.hospdescription}}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid></div>
+    <ion-grid>
+<!--    <ion-row>
+      <ion-col col-12>
+        <div class="txt">
+        <h2>Description</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+           Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+           when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+           It has survived not only five centuries, 
+          but also the leap into electronic typesetting, remaining essentially unchanged</p>
+        </div>
+      </ion-col>
+    </ion-row>-->
+    <ion-row>
+        <ion-col col-6>
+            <button (click)="gallery(this.hospgallary,this.hospital_id,this.hosptitle)" class="galbtn" ion-button color="blue">Gallery</button>
+        </ion-col>
+      <ion-col col-6>
+          <button (click)="modelrate()" class="rtbtn" ion-button color="blue">Review</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+          <div class="txt">
+        <h2>Reviews</h2>
+
+        <div class="dtlbox">
+        <ion-grid no-padding>
+          <ion-row>
+            <ion-col col-3>
+<div class="doc dtl">
+              <img class="doc" src="assets/imgs/dtl.png"></div>
+            </ion-col>
+            <ion-col col-9>
+              <p class="dtl">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <div class="multistars">
+                    <ion-icon class="star" name="star"></ion-icon>
+                    <ion-icon class="star" name="star"></ion-icon>
+                    <ion-icon class="star" name="star"></ion-icon>
+                    <ion-icon class="star" name="star"></ion-icon>
+                    <ion-icon class="star" name="star"></ion-icon></div>
+              </ion-col>
+            </ion-row>
+            </ion-grid></div>
+
+            <div class="dtlbox">
+                <ion-grid no-padding>
+                  <ion-row>
+                    <ion-col col-3>
+        <div class="doc dtl">
+                      <img class="doc" src="assets/imgs/dtl.png"></div>
+                    </ion-col>
+                    <ion-col col-9>
+                        <p class="dtl">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <div class="multistars">
+                            <ion-icon class="star" name="star"></ion-icon>
+                            <ion-icon class="star" name="star"></ion-icon>
+                            <ion-icon class="star" name="star"></ion-icon>
+                            <ion-icon class="star" name="star"></ion-icon>
+                            <ion-icon class="star" name="star"></ion-icon></div>
+                      </ion-col>
+                    </ion-row>
+                    </ion-grid></div>
+           </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+       
+    
+</ion-content>

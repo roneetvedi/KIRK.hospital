@@ -1,0 +1,233 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid no-padding>
+      <ion-row>
+        <ion-col col-2><button ion-button menuToggle>
+          <ion-icon class="menu" name="menu"></ion-icon>
+        </button></ion-col>
+        <ion-col col-8> <ion-title><h6>Home</h6></ion-title></ion-col>
+        <ion-col col-2> 
+           <button ion-button >
+            <img (click)="modelfilter()" class="filter" src="assets/imgs/filter.png">
+            </button></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="border">
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col col-12>
+          <ion-searchbar class="search" placeholder="Search Hospital" [(ngModel)]="myInput" (ionInput)="setFilteredItems()"></ion-searchbar>
+          <!-- <ion-list>
+            <ion-item >
+                <ion-input type="text" value="" placeholder="search"></ion-input>
+            </ion-item>
+          </ion-list> -->
+        </ion-col>
+
+    </ion-row>
+   
+  </ion-grid>
+  <ion-grid  no-padding>
+    <ion-row>
+      <ion-col col-12 no-padding>
+<!--          <div    *ngFor="let listing of listdata">-->
+          <div  style="height:150px;" class="box-bgimage" (click)="detail(listing._id)" *ngFor="let listing of listdata">
+                <div class="cls_hrt">
+              <img class="hspimg" src={{this.url}}{{listing.bannerimage}}/> 
+              </div>
+                <div class="ovrly_hrt">
+              
+<!--        <div class="prfl-detl" >-->
+          
+          <ion-grid class="prfl-detl">
+            <ion-row>
+            <ion-col col-7>
+              <h4> {{listing.title}}</h4>
+            </ion-col>
+            <ion-col col-5>
+              <div class="heart-bx">
+                <ion-icon class="heart" name="heart"></ion-icon></div>
+              </ion-col>
+           </ion-row>
+        <ion-row>
+          <ion-col col-1>  <ion-icon class="pin" name="pin"></ion-icon></ion-col>
+          <ion-col col-5><h5>{{listing.city}},{{listing.country}}</h5></ion-col>
+          <ion-col ocl-6>
+            <div class="multistars">
+              <ion-icon class="star" name="star"></ion-icon>
+              <ion-icon class="star" name="star"></ion-icon>
+              <ion-icon class="star" name="star"></ion-icon>
+              <ion-icon class="star" name="star"></ion-icon>
+              <ion-icon class="star" name="star"></ion-icon></div>
+          </ion-col>
+        </ion-row>
+          </ion-grid>
+</div>
+        </div>
+<!--      </div>-->
+<!--      </div>-->
+        
+ 
+<!--        <div class="prfl-detl1">
+            <ion-grid>
+                <ion-row>
+                <ion-col col-7>
+                  <h4> Surgical Center of Glen  Burnie</h4>
+                </ion-col>
+                <ion-col col-5>
+                  <div class="heart-bx1">
+                    <ion-icon (click)="fav()" class="heart1" name="heart"></ion-icon></div>
+                  </ion-col>
+               </ion-row>
+            <ion-row>
+              <ion-col col-1>  <ion-icon class="pin" name="pin"></ion-icon></ion-col>
+              <ion-col col-5><h5>Lakeland, FL</h5></ion-col>
+              <ion-col ocl-6>
+                <div class="multistars">
+                  <ion-icon class="star" name="star"></ion-icon>
+                  <ion-icon class="star" name="star"></ion-icon>
+                  <ion-icon class="star" name="star"></ion-icon>
+                  <ion-icon class="star" name="star"></ion-icon>
+                  <ion-icon class="star" name="star-outline"></ion-icon></div>
+              </ion-col>
+            </ion-row>
+              </ion-grid>
+       </div>
+ 
+       <div class="prfl-detl2">
+          <ion-grid>
+              <ion-row>
+              <ion-col col-7>
+                <h4> Surgical Center of Glen  Burnie</h4>
+              </ion-col>
+              <ion-col col-5>
+                <div class="heart-bx1">
+                  <ion-icon class="heart1" name="heart"></ion-icon></div>
+                </ion-col>
+             </ion-row>
+          <ion-row>
+            <ion-col col-1>  <ion-icon class="pin" name="pin"></ion-icon></ion-col>
+            <ion-col col-5><h5>Lakeland, FL</h5></ion-col>
+            <ion-col ocl-6>
+              <div class="multistars">
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star-outline"></ion-icon>
+                <ion-icon class="star" name="star-outline"></ion-icon></div>
+            </ion-col>
+          </ion-row>
+            </ion-grid>
+       </div>
+
+       <div class="prfl-detl2">
+          <ion-grid>
+              <ion-row>
+              <ion-col col-7>
+                <h4> Southern Cross Hospital 58 Otonga Rd, Springfield,  Rotorua 301</h4>
+              </ion-col>
+              <ion-col col-5>
+                <div class="heart-bx1">
+                  <ion-icon class="heart1" name="heart"></ion-icon></div>
+                </ion-col>
+             </ion-row>
+          <ion-row>
+            <ion-col col-1>  <ion-icon class="pin" name="pin"></ion-icon></ion-col>
+            <ion-col col-5><h5>Lakeland, FL</h5></ion-col>
+            <ion-col ocl-6>
+              <div class="multistars">
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star-outline"></ion-icon>
+                <ion-icon class="star" name="star-outline"></ion-icon>
+                <ion-icon class="star" name="star-outline"></ion-icon></div>
+            </ion-col>
+          </ion-row>
+            </ion-grid>
+       </div>
+
+       <div class="prfl-detl2">
+          <ion-grid>
+              <ion-row>
+              <ion-col col-7>
+                <h4> Surgical Center of Glen  Burnie</h4>
+              </ion-col>
+              <ion-col col-5>
+                <div class="heart-bx1">
+                  <ion-icon class="heart1" name="heart"></ion-icon></div>
+                </ion-col>
+             </ion-row>
+          <ion-row>
+            <ion-col col-1>  <ion-icon class="pin" name="pin"></ion-icon></ion-col>
+            <ion-col col-5><h5>Lakeland, FL</h5></ion-col>
+            <ion-col ocl-6>
+              <div class="multistars">
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon></div>
+            </ion-col>
+          </ion-row>
+            </ion-grid>
+       </div>
+
+       <div class="prfl-detl2">
+          <ion-grid>
+              <ion-row>
+              <ion-col col-7>
+                <h4> Surgical Center of Glen  Burnie</h4>
+              </ion-col>
+              <ion-col col-5>
+                <div class="heart-bx1">
+                  <ion-icon class="heart1" name="heart"></ion-icon></div>
+                </ion-col>
+             </ion-row>
+          <ion-row>
+            <ion-col col-1>  <ion-icon class="pin" name="pin"></ion-icon></ion-col>
+            <ion-col col-5><h5>Lakeland, FL</h5></ion-col>
+            <ion-col ocl-6>
+              <div class="multistars">
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon></div>
+            </ion-col>
+          </ion-row>
+            </ion-grid>
+       </div>
+
+       <div class="prfl-detl2">
+          <ion-grid>
+              <ion-row>
+              <ion-col col-7>
+                <h4> Surgical Center of Glen  Burnie</h4>
+              </ion-col>
+              <ion-col col-5>
+                <div class="heart-bx1">
+                  <ion-icon class="heart1" name="heart"></ion-icon></div>
+                </ion-col>
+             </ion-row>
+          <ion-row>
+            <ion-col col-1>  <ion-icon class="pin" name="pin"></ion-icon></ion-col>
+            <ion-col col-5><h5>Lakeland, FL</h5></ion-col>
+            <ion-col ocl-6>
+              <div class="multistars">
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon></div>
+            </ion-col>
+          </ion-row>
+            </ion-grid>
+       </div>-->
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

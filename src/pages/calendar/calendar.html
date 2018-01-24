@@ -1,0 +1,154 @@
+<ion-header class="header-bg" >
+
+
+
+
+  <ion-toolbar align-title="center">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <button  class="backbtn" (click)="backtoprocess()">
+            <ion-icon class="customIcon" name="arrow-back"></ion-icon></button>
+        </ion-col>
+        <ion-col col-10>
+          <ion-title> <h4>Calendar</h4></ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+      
+    
+      
+    </ion-toolbar>
+</ion-header>
+
+
+<!--<ion-content class="prfl">
+    <ion-calendar [(ngModel)]="date"
+              (onChange)="onChange($event)"
+              [type]="type"
+              [format]="'YYYY-MM-DD'">
+</ion-calendar>
+    <ion-list class="processdtl">
+
+       <ion-grid no-padding class="listgrid">
+         
+                  <ion-row>
+                     <ion-col col-12 no-padding>    
+                         <div class="prcsbx">
+                           <ion-grid no-padding>
+                             <ion-row>
+                                <ion-col col-12>
+                                    <ion-item>
+                                        
+   <ion-label>Appointments:</ion-label>
+    <ion-datetime class="dt" displayFormat="MM/DD/YYYY" ></ion-datetime>
+                                      </ion-item>
+                                  </ion-col> 
+                                 
+                              </ion-row>
+                            </ion-grid>
+                                    
+                            </div>
+                         </ion-col></ion-row>
+          
+
+              </ion-grid>
+
+<ion-grid no-padding>
+  <ion-row>
+    <ion-col col-12>
+      <div class="cal-txt">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesettin</p>
+        <h6>Jonsan<span class="time"> 7:40PM</span> </h6>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-12>
+      <div class="cal-txt">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesettin</p>
+        <h6>David<span class="time"> 8:15PM</span> </h6>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-12>
+      <div class="cal-txt">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesettin</p>
+        <h6>friyer <span class="time"> 12:32PM</span> </h6>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-12>
+      <div class="note-txt">
+     <label class="note">Note:</label>
+     <ion-textarea type="text" rows="4"></ion-textarea>
+        
+           <ion-input type="text" class="note-inp" value=""></ion-input>  
+      
+
+           <ion-item>
+              <ion-label stacked>Comment</ion-label>
+              <ion-textarea type="text" rows="3"></ion-textarea>
+        </ion-item> 
+  </div>
+  </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+ 
+ <ion-grid>
+   <ion-row>
+
+     <ion-col col-12>     <div class="updtbtn"><button (click)="gotolist()" ion-button full color="blue" class="btnblu">Submit</button></div></ion-col>
+   </ion-row>
+ </ion-grid>
+ </ion-list>
+</ion-content>-->
+
+
+
+
+<ion-content class="prfl">
+    <form #heroForm="ngForm" >
+    <ion-calendar name="date" [(ngModel)]="data.date" (onChange)="onChange($event,heroForm)" [type]="date" [format]="'YYYY-MM-DD'">
+</ion-calendar> 
+
+<ion-grid no-padding>
+  <ion-row>
+    <ion-col col-12>
+        <div class="cal-txt" *ngFor="let not of notedisplayed">
+      <div class="cal-txt1">
+        <p>{{not.note}}</p>
+      </div>
+        <div class="icon_crss">
+             <ion-icon name="close" (click)="delete(not._id)"></ion-icon>
+      </div>
+        </div>
+    </ion-col>
+    
+  </ion-row>
+    
+  <ion-row>
+    <ion-col col-12>
+      <div class="note-txt">
+     <label class="note">Note:</label>
+     <ion-textarea type="text" rows="4" [(ngModel)]="data.notes" name="notes" #notes="ngModel"></ion-textarea>
+       
+     
+  </div>
+  </ion-col>
+  </ion-row>
+</ion-grid>
+
+ <ion-grid>
+   <ion-row>
+
+     <ion-col col-12> <div class="updtbtn"><button (click)="calender(heroForm)" ion-button full color="blue" class="btnblu" [disabled]="!heroForm.form.valid">Submit</button></div></ion-col>
+   </ion-row>
+ </ion-grid>
+</form>
+</ion-content>
+

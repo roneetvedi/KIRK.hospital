@@ -1,0 +1,99 @@
+<ion-header>
+    <ion-toolbar align-title="center">
+        <ion-grid no-padding>
+            <ion-row>
+              <ion-col col-2>
+             <button  class="backbtn" (click)="bktodtl(this.hospital_id)">
+          <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+      </button></ion-col>
+      <ion-col col-10>  <ion-title><h4>Gallery</h4></ion-title></ion-col>
+        
+            </ion-row>
+          </ion-grid>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid  no-padding>
+    <ion-row>
+      <ion-col col-12 >
+ <h6>{{this.hospital_title}} </h6>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="gallery">
+    <ion-row>
+      <ion-col col-6 no-padding>
+<div class="hos-gallery" *ngFor="let hospgal of hospital_gallary">
+    <img src={{this.galurl}}{{hospgal}}>
+</div>
+      </ion-col>
+<!--      <ion-col col-6 no-padding>
+        <div class="hos-gallery">
+            <img src="assets/imgs/banner8.jpg">
+          </div>                   
+      </ion-col>
+      
+    </ion-row>
+    <ion-row>
+        <ion-col col-6 no-padding>
+  <div class="hos-gallery">
+      <img src="assets/imgs/banner6.jpg">
+  </div>
+        </ion-col>
+        <ion-col col-6 no-padding>
+  <div class="hos-gallery">
+    <img src="assets/imgs/banner7.jpg">
+  </div>          
+        </ion-col>
+        
+        
+      </ion-row>
+      <ion-row>
+          <ion-col col-6 no-padding>
+    <div class="hos-gallery">
+        <img src="assets/imgs/banner6.jpg">
+    </div></ion-col>
+          <ion-col col-6 no-padding>
+            <div class="hos-gallery">
+                <img src="assets/imgs/banner8.jpg">
+              </div>                   
+          </ion-col>
+          
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-6 no-padding>
+      <div class="hos-gallery">
+        <img src="assets/imgs/banner7.jpg">
+      </div>          
+            </ion-col>
+            <ion-col col-6 no-padding>
+              <div class="hos-gallery">
+                  <img src="assets/imgs/banner8.jpg">
+                </div>                   
+            </ion-col>
+            
+          </ion-row>
+
+          <ion-row>
+              <ion-col col-6 no-padding>
+        <div class="hos-gallery">
+            <img src="assets/imgs/banner6.jpg">
+        </div>
+              </ion-col>
+              <ion-col col-6 no-padding>
+        <div class="hos-gallery">
+          <img src="assets/imgs/banner7.jpg">
+        </div>          
+              </ion-col> 
+            </ion-row>
+            <ion-row>-->
+              <ion-col col-12>
+                  <button ion-button full color="blue" class="btnblu" (click)="process()">See more</button>
+              </ion-col>
+            </ion-row>
+  </ion-grid>
+    
+</ion-content>

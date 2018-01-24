@@ -1,0 +1,27 @@
+
+
+ <ion-header no-border class="header">
+  <ion-toolbar>
+      <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <button  class="backbtn" (click)="backtoinformtn()">
+            <ion-icon class="customIcon" name="arrow-back"></ion-icon></button>
+        </ion-col>
+        <ion-col col-10>
+            <ion-title><h4>Terms and Conditions</h4></ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col col-12>
+      <div>{{datadisp?.description}}</div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

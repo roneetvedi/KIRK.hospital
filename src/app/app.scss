@@ -43,7 +43,7 @@ h3 {
     font-weight: normal;
     padding-bottom: 14px;
     margin-bottom: 2px;
-    border-bottom: 1px solid;
+/*    border-bottom: 1px solid;*/
 }
 
 
@@ -101,8 +101,10 @@ span.img-menu {
     color: #c1c1c1;
     font-size: 20px;
     left: 0;
+     margin-right: 4px;
     .span.ttl_mnnu{
         color:#000;
+             margin-left: 7px;
     }
 
    }
@@ -112,8 +114,11 @@ span.img-menu {
     color: #c1c1c1;
     font-size: 20px;
     left: 0;
+    margin-right: 4px;
+  
     .span.ttl_mnnu{
         color:#000;
+              margin-left: 6px;
     }
 
    }
@@ -126,8 +131,11 @@ span.img-menu {
     color: #c1c1c1;
     font-size: 20px;
     left: 0;
+     margin-right: 4px;
     .span.ttl_mnnu{
         color:#000;
+       margin-left: 4px;
+       
     }
 
    }
@@ -150,7 +158,7 @@ span.img-menu {
 /*    padding: 9px 0;*/
     padding: 9px 0 9px 14px;
     color: #fff;
-    margin-top: 91px;
+    margin-top: 42px;
 
     .icon{
         float: right;
@@ -160,10 +168,14 @@ span.img-menu {
     }
 }
 
-.side-menubar button:last-child .kb {
-    font-weight: bold;
-    text-decoration: underline;
-float: right ;
+ button:last-child{
+    font-weight: normal;
+img{
+        float: right;
+/*    float: left;
+    margin-left: 0px;
+    margin-right: 5px;*/
+    }
    
 }
 
@@ -176,6 +188,8 @@ button:hover {
  
 // }
 
-
+span.ttl_mnnu {
+    margin-left: 5px;
+}
 }
 

@@ -24,6 +24,7 @@ export class SigninPage {
        public emaildata="";
     public namedata="";
     public iduser="";
+    public picuser="";
     public type='';
   showdata:any;
  public Loading=this.loadingCtrl.create({
@@ -54,7 +55,7 @@ var data={
   email:signin.value.email,
   password:signin.value.password,
 }
-//alert(JSON.stringify(data))
+//alert(JSON.stringify(data))  
 var Serialized = this.serializeObj(data);
 console.log(this.common.options);
 var optionss = this.common.options;
@@ -64,11 +65,14 @@ this.http.post(this.common.base_url +'users/login', Serialized, optionss).map(re
     if(data.success == true){
         this.chkid = JSON.stringify(data.userinfo);
 //        alert(this.chkid);
+        console.log(data.userinfo._id)
         localStorage.setItem('USERDATA',this.chkid);
          localStorage.setItem('USERID',data.userinfo._id);
+         
          localStorage.setItem('USEREMAIL',data.userinfo.email);
          localStorage.setItem('USERNAME',data.userinfo.username);
          localStorage.setItem('USERIMG',data.userinfo.image);
+//         return false;
          this.events.publish('user:login');
       let toast = this.toastCtrl.create({
     message: data.message,
@@ -107,7 +111,7 @@ serializeObj(obj) {
     return result.join("&");
   }
   facebook(){
-//      alert('faceboo');
+//      alert('facebook');
        
     let permissions = new Array<string>();
     let nav = this.navCtrl;
@@ -119,7 +123,7 @@ serializeObj(obj) {
     .then((response) => {
       // alert("response");
       // alert(response);
-      //  alert(JSON.stringify(response));
+//        alert(JSON.stringify(response));
       let userId = response.authResponse.userID;
       let params = new Array<string>();
 
@@ -152,7 +156,7 @@ var Serialized = this.serializeObj(fb_data);
 console.log(this.common.options);
 var optionss = this.common.options;
 this.http.post(this.common.base_url + 'allinoneexist', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
-   alert('data');
+//   alert('data');
    alert(JSON.stringify(data));
     console.log(data);
     
@@ -161,10 +165,12 @@ this.http.post(this.common.base_url + 'allinoneexist', Serialized, optionss).map
        this.emaildata=user.email;
        this.namedata=user.name;
        this.iduser=user.id;
+       this.picuser=user.picture;
        this.type="facebook";
-       this.navCtrl.push(SignupsocialPage,{email:this.emaildata,name:this.namedata,id:this.iduser,type:this.type});
+        localStorage.setItem('FBDATA', JSON.stringify(data.data));
+        this.navCtrl.push(SignupsocialPage, {email: this.emaildata, name: this.namedata, id: this.iduser, type: this.type, pic: this.picuser});
        let toast = this.toastCtrl.create({
-     message: data.message,
+//     message: data.message,
      duration: 3000,
      position: 'middle'
    });
@@ -177,9 +183,9 @@ this.http.post(this.common.base_url + 'allinoneexist', Serialized, optionss).map
        //alert(data.msg)
 //      this.navCtrl.push(ProcessPage);
           localStorage.setItem('FBDATA', JSON.stringify(data.data));
-      
+        localStorage.setItem('USERID',data.data.id);
        let toast = this.toastCtrl.create({
-     message: data.message,
+     //message: data.message,
      duration: 3000,
      position: 'middle'
    });
@@ -187,10 +193,6 @@ this.http.post(this.common.base_url + 'allinoneexist', Serialized, optionss).map
     this.chkuser()
      }
   })
-
-     
-
-
         },(error) => {
           console.log(error);
         })
@@ -228,11 +230,11 @@ if(data.error == '1'){
        this.namedata=res.givenName;
        this.iduser=res.userId;
        this.type="google+";
-     
-
-       this.navCtrl.push(SignupsocialPage,{email:this.emaildata,name:this.namedata,id:this.iduser,type:this.type});
+       this.picuser=res.image;
+       localStorage.setItem('GOGDATA', JSON.stringify(data.data));
+       this.navCtrl.push(SignupsocialPage,{email:this.emaildata,name:this.namedata,id:this.iduser,type:this.type, pic:this.picuser});
        let toast = this.toastCtrl.create({ 
-     message: data.message,
+//     message: data.message,
      duration: 3000,
      position: 'middle'
    });
@@ -244,10 +246,10 @@ if(data.error == '1'){
      }else{
        //alert(data.msg)
      localStorage.setItem('GOGDATA', JSON.stringify(data.data));
-       
+         localStorage.setItem('USERID',data.data.id);
 //      this.navCtrl.push(ProcessPage);
        let toast = this.toastCtrl.create({
-     message: data.message,
+//     message: data.message,
      duration: 3000,
      position: 'middle'
    });
@@ -283,16 +285,17 @@ if(data.error == '1'){
             var serialized_tw = this.common.serializeObj(data_tw);
             console.log(serialized_tw);
             this.http.post(this.common.base_url + 'allinoneexist', serialized_tw, optionss).map(res=>res.json()).subscribe(data=>{
-//          alert("allinone"+ JSON.stringify(data));
+          alert("allinone"+ JSON.stringify(data));
           this.Loading.dismiss();
 if(data.error == '1'){
-       this.emaildata="null";
+       this.emaildata="";
        this.namedata= response.userName;
        this.iduser=this.userTwtid;
        this.type="twitter";
-       
+       this.picuser="";
+        localStorage.setItem('TWTDATA', JSON.stringify(data.data));
 
-       this.navCtrl.push(SignupsocialPage,{email:this.emaildata,name:this.namedata,id:this.iduser,type:this.type});
+        this.navCtrl.push(SignupsocialPage, {email: this.emaildata, name: this.namedata, id: this.iduser, type: this.type, pic:this.picuser});
        let toast = this.toastCtrl.create({
      message: "twitter don't provide email due to sequrity reasons",
      duration: 3000,
@@ -306,10 +309,10 @@ if(data.error == '1'){
      }else{
        //alert(data.msg)
        localStorage.setItem('TWTDATA', JSON.stringify(data.data));
-       
+         localStorage.setItem('USERID',data.data.id);
 //      this.navCtrl.push(ProcessPage);
        let toast = this.toastCtrl.create({
-     message: data.message,
+//     message: data.message,
      duration: 3000,
      position: 'middle'
    });
@@ -324,11 +327,13 @@ if(data.error == '1'){
         })
   }
   chkuser(){
+      alert("user chk");
       var userid = localStorage.getItem("USERID");
         var data = {
       id :userid
       
     }
+//        alert(JSON.stringify(data));
     console.log(this.common.options);
 var optionss = this.common.options;
 
@@ -341,15 +346,17 @@ var optionss = this.common.options;
       if(data.error == 0){
 
         this.showdata=data.data;
-        console.log(this.showdata);
+         
         this.chkuser=data.data.complete_status;
+        
+        
 //         alert(this.chkuser);
-        if(data.data.complete_status == 0){
-              localStorage.setItem('USERID',data.data.id);
+        if(data.data.complete_status == '0'){
+            
            localStorage.setItem('USEREMAIL',data.data.email);
          localStorage.setItem('USERNAME',data.data.username);
          localStorage.setItem('USERIMG',data.data.picture);
-              this.events.publish('user:login');
+              
              this.navCtrl.push(ProcessPage);
              let toast = this.toastCtrl.create({
      message: data.message,
@@ -359,11 +366,11 @@ var optionss = this.common.options;
     toast.present();
     this.events.publish('user:login');
         }else{
-          localStorage.setItem('USERID',data.data.id);
+        
         localStorage.setItem('USEREMAIL',data.data.email);
          localStorage.setItem('USERNAME',data.data.username);
          localStorage.setItem('USERIMG',data.data.picture);
-              this.events.publish('user:login');
+             
            this.navCtrl.push(ListPage);
              let toast = this.toastCtrl.create({
      message: data.message,

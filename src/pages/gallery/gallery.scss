@@ -47,13 +47,13 @@ h6 {
     float: left;
 
     .hos-gallery {
-        position: relative;
-        overflow: hidden;
-        width: 160px;
-        height: 106px;
-        background-color: #3c6ca4;
-        margin: 1px 0;
-        float: left;
+    position: relative;
+    overflow: hidden;
+    width: 157px;
+    height: 146PX;
+    background-color: #3c6ca4;
+    margin: 1px 0 3px 4px;
+    float: left;
     }
 
     img {
@@ -71,6 +71,10 @@ h6 {
     padding: 19px 0;
     font-size: 18px;
     font-weight: normal;
+}
+
+.btnblu:hover {
+       background-color: #326297 !important;
 }
 
  h4 {

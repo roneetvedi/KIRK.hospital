@@ -29,6 +29,7 @@ public countries='';
 chkuser:any;
 public prfimage='';
 public image='';
+public base64Image='';
   constructor(public navCtrl: NavController,
     public navParams: NavParams,public http:Http,
     public app:App,private camera: Camera,
@@ -217,6 +218,7 @@ var optionss = this.common.options;
 //    alert("loding toh baad");
       if(data.error == '0'){
 //          alert("data saved");
+          
            localStorage.setItem('USEREMAIL',data.data.email);
          localStorage.setItem('USERNAME',data.data.username);
         this.navCtrl.push(ListPage);
@@ -257,5 +259,132 @@ var optionss = this.common.options;
    calndr(){
     this.navCtrl.push(CalendarPage);
    }
+takePhoto() {
+    alert("in");
+    
+       let actionsheet = this.actionSheetCtrl.create({
+                title:"Choose Album",
+                buttons:[{
+                text: 'Camera',
+                handler: () => {
+                console.log("Camera Clicked");
+                 this.Loading.present();
+                  const options: CameraOptions = {
+                  quality: 8,
+                  sourceType : 1,
+                  destinationType: this.camera.DestinationType.DATA_URL,
+                  encodingType: this.camera.EncodingType.JPEG,
+                  mediaType: this.camera.MediaType.PICTURE
+                }
+                this.camera.getPicture(options).then((imageData) => {
+                  this.base64Image = "data:image/jpeg;base64," + imageData;
+                  
+                  this.image=imageData;
+                  localStorage.setItem("IMG",  this.prfimage);
+                 localStorage.setItem("IMG",  this.prfimage);
+                  // this.profile_image =  imageData; 
+//                    var data_img = ({
+//                                 user_id :this.userid,
+//
+//               profile_picture :this.image
+//                      })
+////                    alert("image" + JSON.stringify(data_img));
+//                    var serialized_img = this.serializeObj(data_img); 
+//                    console.log(serialized_img);
+//                   console.log(this.common.options);
+//                  var optionss = this.common.options;
+//                
+//                  var Serialized = this.serializeObj(data_img);
+//                  console.log(Serialized);
+//                  this.http.post(this.common.base_url +'profilepicupload', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
+////                      alert(JSON.stringify(data));
+//   
+//                    this.Loading.dismiss();
+//                  //  alert("img ->"+data);
+//                  //  alert("img ->"+JSON.stringify(data));
+//                   if(data.status == "true"){
+//                  let toast = this.toastCtrl.create({
+//                  message: data.message,
+//                  duration: 3000,
+//                  position: 'middle'
+//                });
+//                  toast.present();
+//                  this.image='';
+//             
+//                  // this.data= data; 
+//    }
+//      });
+      
+                }, (err) => {
+                alert("Server not Working,Please Check your Internet Connection and try again!");
+                this.Loading.dismiss();
+                });
+                }
+                },{
+                text: 'Gallery',
+                
+                handler: () => { this.Loading.present();
+                                const options: CameraOptions = {
+                                quality: 8,
+                                sourceType : 0,
+                                destinationType: this.camera.DestinationType.DATA_URL,
+                                encodingType: this.camera.EncodingType.JPEG,
+                                mediaType: this.camera.MediaType.PICTURE
+                              }
+                              this.camera.getPicture(options).then((imageData) => {
+                            this.base64Image = "data:image/jpeg;base64," + imageData;
+                             this.image=imageData;
+                                localStorage.setItem("IMG",  this.prfimage);
+                             
+//                                          var data_img = ({
+//                                              
+//                                 user_id :this.userid,
+//                                  profile_picture :this.image
+//                      })
+//                              
+//                                var serialized_img = this.serializeObj(data_img); 
+//                    console.log(serialized_img);
+//                   console.log(this.common.options);
+//                  var optionss = this.common.options;
+//                
+//                  var Serialized = this.serializeObj(data_img);
+//                  console.log(Serialized);
+//                  this.http.post(this.common.base_url +'profilepicupload', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
+//                  console.log(data);
+//   
+//                    this.Loading.dismiss();
+//                               if(data.status == "true"){
+//                  let toast = this.toastCtrl.create({
+//                  message: data.message,
+//                  duration: 3000,
+//                  position: 'middle'
+//                });
+//                  toast.present();
+//                  this.image='';
+//                  // this.data= data; 
+//    }
+//      });
+                              }, (err) => {
+                              alert("Server not Working,Please Check your Internet Connection and try again!");
+                              this.Loading.dismiss();
+                              });
+                }
+                },
+                {
+                        text: 'Cancel',
+                        role: 'cancel',
+                        handler: () => {
+                          console.log('Cancel clicked');
+                          this.Loading.dismiss();
+                          //  actionsheet.dismiss()         
+                        }
+                      }
+                    ]
+                  });
 
+                  actionsheet.present();
+  }
+  delete(){
+      alert("delete");
+  }
 }

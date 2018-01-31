@@ -10,6 +10,7 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import {LoadingController} from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import{App} from 'ionic-angular';
+import { ProcessPage } from '../process/process';
 
 @Component({
   selector: 'page-list',
@@ -22,6 +23,7 @@ export class ListPage {
   });
      loading = this.Loading;
     latitude:any;
+  
     longitude:any;
     public userids="";
     listdata;
@@ -29,6 +31,7 @@ export class ListPage {
      myInput: any;
   errorValue: string;
   searchList: any;
+  showdata;
   name: any;
   selectedItem: any;
   icons: string[];
@@ -60,7 +63,7 @@ export class ListPage {
     this.userids = localStorage.getItem("USERID");
     console.log(this.userids);
      this.events.publish('user:login');
-     this.loaction();
+     this.chkuser();
   }
 
   itemTapped(event, item) {
@@ -74,13 +77,13 @@ export class ListPage {
     modal.present();
   }
 
-  detail(ids){
-    this.navCtrl.push(HospitaldetailPage,{hosp_id:ids});
+  detail(ids,dst){
+    this.navCtrl.push(HospitaldetailPage,{hosp_id:ids,usr_id:dst});
    }
 
-   fav(){
-    this.navCtrl.push(FavouritePage);
-   }
+//   fav(){
+//    this.navCtrl.push(FavouritePage);
+//   }
    loaction(){
 //       alert("location");
        this.geolocation.getCurrentPosition().then((resp) => {
@@ -156,10 +159,52 @@ var optionss = this.common.options;
       }); 
   }
    serializeObj(obj) {
-    var result = [];
+    var result = []; 
     for (var property in obj)
       result.push(encodeURIComponent(property) + "=" + encodeURIComponent(obj[property]));
 
     return result.join("&");
+  }
+  chkuser(){
+      alert("user chk");
+      var userid = localStorage.getItem("USERID");
+        var data = {
+      id :userid
+      
+    }
+//        alert(JSON.stringify(data));
+    console.log(this.common.options);
+var optionss = this.common.options;
+
+    var Serialized = this.serializeObj(data);
+    console.log(Serialized);
+    
+    this.http.post(this.common.base_url +'users/userdetailbyid', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
+    console.log(data);
+    this.Loading.dismiss();
+      if(data.error == 0){
+
+        this.showdata=data.data;
+         
+        this.chkuser=data.data.complete_status;
+        
+        
+//         alert(this.chkuser);
+        if(data.data.complete_status == '0'){
+            this.navCtrl.push(ProcessPage);
+             let toast = this.toastCtrl.create({
+     message: "Data form needs to completed",
+     duration: 3000,
+     position: 'middle'
+   });
+    toast.present();
+   
+        }else{
+           this.navCtrl.push(ListPage);
+           this.loaction();
+        }
+      }
+
+    })
   }
 }

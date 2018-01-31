@@ -29,6 +29,7 @@ export class SignupsocialPage {
   public name='';
   public iduser="";
   public type="";
+  public picuser='';
   showdata:"";
   loading = this.Loading;
   constructor(public navCtrl: NavController,
@@ -39,10 +40,11 @@ export class SignupsocialPage {
                  this.name=this.navParams.get('name');
                  this.iduser=this.navParams.get('id');
                  this.type=this.navParams.get('type');
-                 alert(this.useremail);
-                 alert(this.name);
-                 alert(this.iduser);
-                 alert(this.type);
+                 this.picuser = this.navParams.get('pic');
+//                 alert(this.useremail);
+//                 alert(this.name);
+//                 alert(this.iduser);
+//                 alert(this.type);
   }
 
   signn(){
@@ -62,8 +64,8 @@ signup_form(signup)
       facebook_id:this.iduser,
       email:signup.value.email,
       type:signup.value.type,
-      password:'rakesh@123'
-     
+      password:'rakesh@123',
+      image: this.picuser
 }
        
        
@@ -79,7 +81,7 @@ signup_form(signup)
           
            
             if(data.error == 0){
-            localStorage.setItem('FBDATA', JSON.stringify(data.data));
+//            localStorage.setItem('FBDATA', JSON.stringify(data.data));
               localStorage.setItem('USERID',data.data.id);
              let toast = this.toastCtrl.create({
             message: data.message,
@@ -105,8 +107,8 @@ signup_form(signup)
       google_id:this.iduser,
       email:signup.value.email,
       type:signup.value.type,
-      password:'rakesh@123'
-     
+      password:'rakesh@123',
+      image: this.picuser
 }
        
        
@@ -148,8 +150,8 @@ signup_form(signup)
       twitter_id:this.iduser,
       email:signup.value.email,
       type:signup.value.type,
-      password:'rakesh@123'
-     
+      password:'rakesh@123',
+      image: this.picuser
 }
        
        
@@ -159,13 +161,13 @@ signup_form(signup)
        
           this.http.post(this.common.base_url +'twitterlogin',Serialized, optionss).map(res=>res.json()).subscribe(data=>{
           // alert(data);
-          // alert(JSON.stringify(data));
+//           alert(JSON.stringify(data));
           this.Loading.dismiss();
             console.log(data);
           
            
             if(data.error == 0){
-            localStorage.setItem('TWTDATA', JSON.stringify(data.data));
+//            localStorage.setItem('TWTDATA', JSON.stringify(data.data));
               localStorage.setItem('USERID',data.data.id);
             let toast = this.toastCtrl.create({
             message: data.message,

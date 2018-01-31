@@ -19,15 +19,15 @@
     <ion-row>
       <ion-col col-12 no-padding>
 <!--          <div class="hsptldetail">-->
-        <div class="prfl-detl" (click)="detail()" >
+        <div class="prfl-detl"  >
           <ion-grid>
             <ion-row>
             <ion-col col-7>
               <h6> {{this.hosptitle}}</h6>
             </ion-col>
             <ion-col col-5>
-              <div class="heart-bx">
-                <ion-icon class="heart" name="heart"></ion-icon></div>
+              <div class="heart-bx" (click)="favourite()">
+                <ion-icon class="heart" name="heart" ></ion-icon></div>
               </ion-col>
            </ion-row>
         <ion-row>

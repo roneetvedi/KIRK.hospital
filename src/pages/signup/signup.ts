@@ -154,25 +154,26 @@ var fb_data = {
       type:"facebook"
 }
     
- alert(JSON.stringify(fb_data))
+// alert(JSON.stringify(fb_data))
 var Serialized = this.serializeObj(fb_data);
 console.log(this.common.options);
 var optionss = this.common.options;
 this.http.post(this.common.base_url + 'allinoneexist', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
-   alert('data');
-   alert(JSON.stringify(data));
+//   alert('data');
+//   alert(JSON.stringify(data));
     console.log(data);
-     localStorage.setItem('FBDATA', JSON.stringify(data.data));
-     
+    
+
  if(data.error == 1){
        this.Loading.dismiss();
        this.emaildata=user.email;
        this.namedata=user.name;
        this.iduser=user.id;
        this.type="facebook";
+        localStorage.setItem('FBDATA', JSON.stringify(data.data));
        this.navCtrl.push(SignupsocialPage,{email:this.emaildata,name:this.namedata,id:this.iduser,type:this.type});
        let toast = this.toastCtrl.create({
-     message: data.message,
+//     message: data.message,
      duration: 3000,
      position: 'middle'
    });
@@ -185,9 +186,9 @@ this.http.post(this.common.base_url + 'allinoneexist', Serialized, optionss).map
        //alert(data.msg)
 //      this.navCtrl.push(ProcessPage);
      localStorage.setItem('FBDATA', JSON.stringify(data.data));
-     
+            localStorage.setItem('USERID',data.data.id);
        let toast = this.toastCtrl.create({
-     message: data.message,
+//     message: data.message,
      duration: 3000,
      position: 'middle'
    });
@@ -230,17 +231,17 @@ this.http.post(this.common.base_url + 'allinoneexist', Serialized, optionss).map
         
           this.Loading.dismiss();
 //          alert(JSON.stringify(data))
-if(data.error == '0'){
+if(data.error == 1){
 //    alert("in");
        this.emaildata=res.email;
        this.namedata=res.givenName;
        this.iduser=res.userId;
        this.type="google+";
          localStorage.setItem('GOGDATA', JSON.stringify(data.data));
-//         localStorage.setItem('USERID',data.data.id);
+//         localStorage.setItem('USERID',data.data._id);
        this.navCtrl.push(SignupsocialPage,{email:this.emaildata,name:this.namedata,id:this.iduser,type:this.type});
        let toast = this.toastCtrl.create({
-     message: data.message,
+//     message: data.message,
      duration: 3000,
      position: 'middle'
    });
@@ -252,10 +253,10 @@ if(data.error == '0'){
      }else{
        //alert(data.msg)
                 localStorage.setItem('GOGDATA', JSON.stringify(data.data));
-
+                  localStorage.setItem('USERID',data.data.id);
 //      this.navCtrl.push(ProcessPage);
        let toast = this.toastCtrl.create({
-     message: data.message,
+//     message: data.message,
      duration: 3000,
      position: 'middle'
    });
@@ -267,8 +268,8 @@ if(data.error == '0'){
  })
    
   }
-   twitter_log(): void {
-    this.Loading.present();
+   twitter_login(){
+      this.Loading.present();
 //     alert("twitter");
      this.twitter.login().then(response => {
 //       alert(JSON.stringify(response));
@@ -294,12 +295,13 @@ if(data.error == '0'){
             this.http.post(this.common.base_url + 'allinoneexist', serialized_tw, optionss).map(res=>res.json()).subscribe(data=>{
 //          alert("allinone"+ JSON.stringify(data));
           this.Loading.dismiss();
-if(data.error == 0){
+if(data.error == '1'){
        this.emaildata="null";
        this.namedata= response.userName;
        this.iduser=this.userTwtid;
        this.type="twitter";
-            localStorage.setItem('TWTDATA', JSON.stringify(data.data));
+       
+        localStorage.setItem('TWTDATA', JSON.stringify(data.data));
 
        this.navCtrl.push(SignupsocialPage,{email:this.emaildata,name:this.namedata,id:this.iduser,type:this.type});
        let toast = this.toastCtrl.create({
@@ -314,15 +316,15 @@ if(data.error == 0){
     
      }else{
        //alert(data.msg)
-    localStorage.setItem('TWTDATA', JSON.stringify(data.data));
+       localStorage.setItem('TWTDATA', JSON.stringify(data.data));
+         localStorage.setItem('USERID',data.data.id);
+//      this.navCtrl.push(ProcessPage);
        let toast = this.toastCtrl.create({
-     message: data.message,
+//     message: data.message,
      duration: 3000,
      position: 'middle'
    });
     toast.present();
-    
-    
     this.chkuser();
      }
   })
@@ -331,7 +333,7 @@ if(data.error == 0){
 
 
         })
-     }
+  }
      chkuser(){
       var userid = localStorage.getItem("USERID");
         var data = {
@@ -347,14 +349,14 @@ var optionss = this.common.options;
     this.http.post(this.common.base_url +'users/userdetailbyid', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
     console.log(data);
     this.Loading.dismiss();
-      if(data.error == 0){
+      if(data.error == 0){ 
 
         this.showdata=data.data;
         console.log(this.showdata);
         this.chkuser=data.data.complete_status;
 //         alert(this.chkuser);
         if(data.data.complete_status == 0){
-              localStorage.setItem('USERID',data.data.id);
+     
            localStorage.setItem('USEREMAIL',data.data.email);
          localStorage.setItem('USERNAME',data.data.username);
          localStorage.setItem('USERIMG',data.data.picture);
@@ -368,7 +370,7 @@ var optionss = this.common.options;
     toast.present();
     this.events.publish('user:login');
         }else{
-          localStorage.setItem('USERID',data.data.id);
+
         localStorage.setItem('USEREMAIL',data.data.email);
          localStorage.setItem('USERNAME',data.data.username);
          localStorage.setItem('USERIMG',data.data.picture);

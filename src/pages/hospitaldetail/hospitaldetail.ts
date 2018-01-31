@@ -23,10 +23,12 @@ export class HospitaldetailPage {
   });
      loading = this.Loading;
     hospital_id;
+    user_id;
     detailhosp;
     hospgallary;
-    
+      hospid;
      hosptitle;
+     favdata;
     public hospcity ='';
     public hospcountry ='';
     public hospdescription ='';
@@ -36,6 +38,7 @@ export class HospitaldetailPage {
       public modalCtrl: ModalController,public http:Http,public common:CommonProvider, public loadingCtrl:LoadingController,public toastCtrl:ToastController ) {
     this.menu.swipeEnable(false);
     this.hospital_id= this.navParams.get('hosp_id');
+    this.user_id = this.navParams.get('usr_id');
 //    alert(this.hospital_id);
     this.hospdetail();
   }
@@ -96,5 +99,35 @@ var optionss = this.common.options;
       result.push(encodeURIComponent(property) + "=" + encodeURIComponent(obj[property]));
 
     return result.join("&");
+  }
+  favourite(){
+//      alert("mera favourite");
+      var data = {
+          hospital_id:this.hospital_id,
+          user_id:this.user_id
+      }
+      alert(JSON.stringify(data));
+      var optionss = this.common.options;
+
+    var Serialized = this.serializeObj(data);
+    console.log(Serialized);
+    
+    this.http.post(this.common.base_url +'favorite/add', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
+    console.log(data);
+    this.Loading.dismiss();
+      if(data.error == '0'){
+//       alert("data displayed");
+       this.favdata=data.data;
+      }else{
+        //alert(data.message);
+  let toast = this.toastCtrl.create({
+     message: data.message,
+     duration: 3000,
+     position: 'middle'
+   });
+    toast.present();
+      }
+
+    })
   }
 }

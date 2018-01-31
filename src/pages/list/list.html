@@ -34,7 +34,7 @@
     <ion-row>
       <ion-col col-12 no-padding>
 <!--          <div    *ngFor="let listing of listdata">-->
-          <div  style="height:150px;" class="box-bgimage" (click)="detail(listing._id)" *ngFor="let listing of listdata">
+          <div  style="height:150px;" class="box-bgimage"  *ngFor="let listing of listdata">
                 <div class="cls_hrt">
               <img class="hspimg" src={{this.url}}{{listing.bannerimage}}/> 
               </div>
@@ -45,11 +45,11 @@
           <ion-grid class="prfl-detl">
             <ion-row>
             <ion-col col-7>
-              <h4> {{listing.title}}</h4>
+              <h4 (click)="detail(listing._id,listing.user_id)"> {{listing.title}}</h4>
             </ion-col>
             <ion-col col-5>
-              <div class="heart-bx">
-                <ion-icon class="heart" name="heart"></ion-icon></div>
+              <div class="heart-bx" >
+                <ion-icon class="heart" name="heart" ></ion-icon></div>
               </ion-col>
            </ion-row>
         <ion-row>

@@ -131,7 +131,7 @@
                               <ion-col col-2>
                                  <h5>Timing</h5>
                                </ion-col>
-                               <ion-col col-5>
+                               <ion-col col-9>
                                   <ion-item class="slct-dt">
                                         
                                       <ion-label>From</ion-label>
@@ -202,16 +202,23 @@
    <ion-row>
      <ion-col col-12>
        <h1>Gallery</h1>
-       <ion-slides>
-         <ion-slide>
+<!--       <ion-slides>
+         <ion-slide>-->
            <ion-grid>
              <ion-row>
                <ion-col col-4>
                   <div class="acheivmnt">
-                      <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
+                      <div class="icn-pls"> <ion-icon class="add" name="add-circle" (click)="takePhoto()"></ion-icon></div>
                     </div>
                </ion-col>
-               <ion-col col-4>
+                 <ion-col col-2></ion-col>
+                 <ion-col col-4>
+                        <div class="upldimg">
+                             <img *ngIf="this.base64Image == '' || this.base64Image == undefined"  class="pic" src="assets/imgs/no-user-image.gif"/>
+          <img *ngIf="this.base64Image != ''" class="pic" [src]="this.base64Image"/>
+                            </div>
+                 </ion-col>
+<!--               <ion-col col-4>
                   <div class="acheivmnt">
                       <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
                     </div>
@@ -220,11 +227,13 @@
                   <div class="acheivmnt">
                       <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
                     </div>
-               </ion-col>
+               </ion-col>-->
              </ion-row>
-           </ion-grid></ion-slide>
+           </ion-grid>
+<!--     </ion-slide>
 
-        <ion-slide>
+
+     <ion-slide>
             <ion-grid>
                 <ion-row>
                   <ion-col col-4>
@@ -245,7 +254,8 @@
                 </ion-row>
               </ion-grid>
         </ion-slide>
-       </ion-slides>
+     
+       </ion-slides>-->
      </ion-col>
    </ion-row>
  </ion-grid>

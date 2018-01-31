@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,NavParams} from 'ionic-angular';
+import { NavController,NavParams,MenuController,Events} from 'ionic-angular';
 import { SigninPage } from '../signin/signin';
 import { ListPage } from '../list/list';
 import { CalendarPage } from '../calendar/calendar';
@@ -30,14 +30,14 @@ chkuser:any;
 public prfimage='';
 public image='';
 public base64Image='';
-  constructor(public navCtrl: NavController,
+  constructor(public navCtrl: NavController,public events:Events,
     public navParams: NavParams,public http:Http,
-    public app:App,private camera: Camera,
+    public app:App,private camera: Camera,public menu: MenuController,
     public common : CommonProvider, private toastCtrl: ToastController,
     public actionSheetCtrl: ActionSheetController, 
     public loadingCtrl:LoadingController) {
   
-    
+    this.menu.swipeEnable(false);
     this.userid = localStorage.getItem("USERID");
     console.log(this.userid);
     this.country();
@@ -105,7 +105,9 @@ var optionss = this.common.options;
                     this.Loading.dismiss();
                   //  alert("img ->"+data);
                   //  alert("img ->"+JSON.stringify(data));
-                   if(data.status == "true"){
+                   if(data.status == true){
+                       localStorage.setItem("USERIMG",data.data); 
+                       this.events.publish('user:login');
                   let toast = this.toastCtrl.create({
                   message: data.message,
                   duration: 3000,
@@ -156,7 +158,9 @@ var optionss = this.common.options;
                   console.log(data);
    
                     this.Loading.dismiss();
-                               if(data.status == "true"){
+                               if(data.status == true){
+                                      localStorage.setItem("USERIMG",data.data); 
+                       this.events.publish('user:login');
                   let toast = this.toastCtrl.create({
                   message: data.message,
                   duration: 3000,
@@ -260,7 +264,7 @@ var optionss = this.common.options;
     this.navCtrl.push(CalendarPage);
    }
 takePhoto() {
-    alert("in");
+//    alert("in");
     
        let actionsheet = this.actionSheetCtrl.create({
                 title:"Choose Album",
@@ -282,38 +286,37 @@ takePhoto() {
                   this.image=imageData;
                   localStorage.setItem("IMG",  this.prfimage);
                  localStorage.setItem("IMG",  this.prfimage);
-                  // this.profile_image =  imageData; 
-//                    var data_img = ({
-//                                 user_id :this.userid,
-//
-//               profile_picture :this.image
-//                      })
-////                    alert("image" + JSON.stringify(data_img));
-//                    var serialized_img = this.serializeObj(data_img); 
-//                    console.log(serialized_img);
-//                   console.log(this.common.options);
-//                  var optionss = this.common.options;
-//                
-//                  var Serialized = this.serializeObj(data_img);
-//                  console.log(Serialized);
-//                  this.http.post(this.common.base_url +'profilepicupload', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
-////                      alert(JSON.stringify(data));
-//   
-//                    this.Loading.dismiss();
-//                  //  alert("img ->"+data);
-//                  //  alert("img ->"+JSON.stringify(data));
-//                   if(data.status == "true"){
-//                  let toast = this.toastCtrl.create({
-//                  message: data.message,
-//                  duration: 3000,
-//                  position: 'middle'
-//                });
-//                  toast.present();
-//                  this.image='';
-//             
-//                  // this.data= data; 
-//    }
-//      });
+//                   this.profile_image =  imageData; 
+                    var data_img = ({
+                                 user_id :this.userid,
+                                 docs :this.image
+                      })
+//                    alert("image" + JSON.stringify(data_img));
+                    var serialized_img = this.serializeObj(data_img); 
+                    console.log(serialized_img);
+                   console.log(this.common.options);
+                  var optionss = this.common.options;
+                
+                  var Serialized = this.serializeObj(data_img);
+                  console.log(Serialized);
+                  this.http.post(this.common.base_url +'docupload', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
+//                      alert(JSON.stringify(data));
+   
+                    this.Loading.dismiss();
+                  //  alert("img ->"+data);
+                  //  alert("img ->"+JSON.stringify(data));
+                   if(data.status == true){
+                  let toast = this.toastCtrl.create({
+                  message: data.message,
+                  duration: 3000,
+                  position: 'middle'
+                });
+                  toast.present();
+                  this.image='';
+             
+                  // this.data= data; 
+    }
+      });
       
                 }, (err) => {
                 alert("Server not Working,Please Check your Internet Connection and try again!");
@@ -335,35 +338,36 @@ takePhoto() {
                             this.base64Image = "data:image/jpeg;base64," + imageData;
                              this.image=imageData;
                                 localStorage.setItem("IMG",  this.prfimage);
-                             
-//                                          var data_img = ({
-//                                              
-//                                 user_id :this.userid,
-//                                  profile_picture :this.image
-//                      })
-//                              
-//                                var serialized_img = this.serializeObj(data_img); 
-//                    console.log(serialized_img);
-//                   console.log(this.common.options);
-//                  var optionss = this.common.options;
-//                
-//                  var Serialized = this.serializeObj(data_img);
-//                  console.log(Serialized);
-//                  this.http.post(this.common.base_url +'profilepicupload', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
-//                  console.log(data);
-//   
-//                    this.Loading.dismiss();
-//                               if(data.status == "true"){
-//                  let toast = this.toastCtrl.create({
-//                  message: data.message,
-//                  duration: 3000,
-//                  position: 'middle'
-//                });
-//                  toast.present();
-//                  this.image='';
-//                  // this.data= data; 
-//    }
-//      });
+                              var data_img = ({
+                                 user_id :this.userid,
+                                 docs :this.image
+                      })
+//                    alert("image" + JSON.stringify(data_img));
+                    var serialized_img = this.serializeObj(data_img); 
+                    console.log(serialized_img);
+                   console.log(this.common.options);
+                  var optionss = this.common.options;
+                
+                  var Serialized = this.serializeObj(data_img);
+                  console.log(Serialized);
+                  this.http.post(this.common.base_url +'docupload', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
+//                      alert(JSON.stringify(data));
+   
+                    this.Loading.dismiss();
+                  //  alert("img ->"+data);
+                  //  alert("img ->"+JSON.stringify(data));
+                   if(data.status == true){
+                  let toast = this.toastCtrl.create({
+                  message: data.message,
+                  duration: 3000,
+                  position: 'middle'
+                });
+                  toast.present();
+                  this.image='';
+             
+                  // this.data= data; 
+    }
+      });
                               }, (err) => {
                               alert("Server not Working,Please Check your Internet Connection and try again!");
                               this.Loading.dismiss();
@@ -384,7 +388,5 @@ takePhoto() {
 
                   actionsheet.present();
   }
-  delete(){
-      alert("delete");
-  }
+  
 }

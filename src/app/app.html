@@ -14,7 +14,7 @@
 <div class="dr-image">
     <div class="profile-img">
           
-      <img *ngIf="this.userimg == '' || this.userimg == 'undefined' "  class="dr-img" src="assets/imgs/no-user-image.gif"/>
+      <img *ngIf="this.userimg == '' || this.userimg == 'undefined' || this.userimg == null "  class="dr-img" src="assets/imgs/no-user-image.gif"/>
           <img *ngIf="this.userimg != ''" class="dr-img" [src]="this.userimg"/></div>
 </div>
         </ion-col>

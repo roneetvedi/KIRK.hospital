@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Events } from 'ionic-angular';
+import { NavController, Events,MenuController  } from 'ionic-angular';
 import { SigninPage } from '../signin/signin';
 import { ProcessPage } from '../process/process';
 import {Http, Headers, RequestOptions} from '@angular/http';
@@ -35,9 +35,9 @@ export class SignupPage {
   loading = this.Loading;
   constructor(public navCtrl: NavController,
                 public navParams: NavParams,public events: Events,
-                public http:Http,private fb: Facebook,public nativeStorage: NativeStorage,private googlePlus: GooglePlus,
+                public http:Http,private fb: Facebook,public nativeStorage: NativeStorage,private googlePlus: GooglePlus,public menu: MenuController,
                 public common : CommonProvider, public loadingCtrl:LoadingController,private twitter: TwitterConnect,private toastCtrl: ToastController) {
-
+this.menu.swipeEnable(false);
   }
 
   signn(){
@@ -305,7 +305,7 @@ if(data.error == '1'){
 
        this.navCtrl.push(SignupsocialPage,{email:this.emaildata,name:this.namedata,id:this.iduser,type:this.type});
        let toast = this.toastCtrl.create({
-     message: "twitter don't provide email due to sequrity reasons",
+     message: "twitter don't provide email due to security reasons",
      duration: 3000,
      position: 'middle'
    });

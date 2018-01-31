@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,MenuController } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { ListPage } from '../list/list';
 import { SigninPage } from '../signin/signin';
@@ -9,10 +9,11 @@ import { SigninPage } from '../signin/signin';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,public menu: MenuController,) {
  if(localStorage.getItem('USERID') != null){
           this.navCtrl.push(ListPage);
         }
+        this.menu.swipeEnable(false);
   }
   lgin(){
       this.navCtrl.push(SigninPage);

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Events } from 'ionic-angular';
+import { NavController, Events,MenuController } from 'ionic-angular';
 import { SigninPage } from '../signin/signin';
 import { ProcessPage } from '../process/process';
 import {Http, Headers, RequestOptions} from '@angular/http';
@@ -33,7 +33,7 @@ export class SignupsocialPage {
   showdata:"";
   loading = this.Loading;
   constructor(public navCtrl: NavController,
-                public navParams: NavParams,public events:Events,
+                public navParams: NavParams,public events:Events,public menu:MenuController,
                 public http:Http,private fb: Facebook,public nativeStorage: NativeStorage,private googlePlus: GooglePlus,
                 public common : CommonProvider, public loadingCtrl:LoadingController,private twitter: TwitterConnect,private toastCtrl: ToastController) {
                 this.useremail=this.navParams.get('email');
@@ -41,6 +41,7 @@ export class SignupsocialPage {
                  this.iduser=this.navParams.get('id');
                  this.type=this.navParams.get('type');
                  this.picuser = this.navParams.get('pic');
+                 this.menu.swipeEnable(false);
 //                 alert(this.useremail);
 //                 alert(this.name);
 //                 alert(this.iduser);

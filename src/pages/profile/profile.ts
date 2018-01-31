@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,NavParams } from 'ionic-angular';
+import { NavController,NavParams,Events } from 'ionic-angular';
 import { MenuController } from 'ionic-angular';
 import { EditprofilePage } from '../editprofile/editprofile';
 import { NotificationPage } from '../notification/notification';
@@ -36,7 +36,7 @@ public editedu='';
 public editcharges='';
 public editawrd='';
   constructor(public navCtrl: NavController,
-    public navParams: NavParams,public http:Http,
+    public navParams: NavParams,public http:Http,public events:Events,
     public common : CommonProvider, private toastCtrl: ToastController,
     public actionSheetCtrl: ActionSheetController, 
     public loadingCtrl:LoadingController, public menu: MenuController) {
@@ -63,12 +63,15 @@ var optionss = this.common.options;
     console.log(Serialized);
     
     this.http.post(this.common.base_url +'users/userdetailbyid', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
+//        alert(JSON.stringify(data))
     console.log(data);
     this.Loading.dismiss();
       if(data.error == 0){
 
         this.showdata=data.data;
          this.prfimage = data.data.image;
+         localStorage.setItem('USERIMG',data.data.image);
+        this.events.publish('user:login');
         this.editname=data.data.username; 
         this.edittype=data.data.type;
         this.editcity=data.data.address_city;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, LoadingController ,Events } from 'ionic-angular';
+import { NavController, NavParams, ToastController, LoadingController ,Events,MenuController } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { NativeStorage } from '@ionic-native/native-storage';
@@ -33,10 +33,10 @@ export class SigninPage {
   });
   loading = this.Loading;
   constructor(public navCtrl: NavController,
-        public navParams: NavParams,
+        public navParams: NavParams,public menu: MenuController,
         public http:Http, private fb: Facebook,public nativeStorage: NativeStorage,public events: Events,private twitter: TwitterConnect,
         public common : CommonProvider,private toastCtrl: ToastController,private googlePlus: GooglePlus, public loadingCtrl:LoadingController) {
-
+         this.menu.swipeEnable(false);
   }
 
   sgnup(){
@@ -68,12 +68,9 @@ this.http.post(this.common.base_url +'users/login', Serialized, optionss).map(re
         console.log(data.userinfo._id)
         localStorage.setItem('USERDATA',this.chkid);
          localStorage.setItem('USERID',data.userinfo._id);
-         
-         localStorage.setItem('USEREMAIL',data.userinfo.email);
-         localStorage.setItem('USERNAME',data.userinfo.username);
-         localStorage.setItem('USERIMG',data.userinfo.image);
+       
 //         return false;
-         this.events.publish('user:login');
+//         this.events.publish('user:login');
       let toast = this.toastCtrl.create({
     message: data.message,
     duration: 3000,
@@ -297,7 +294,7 @@ if(data.error == '1'){
 
         this.navCtrl.push(SignupsocialPage, {email: this.emaildata, name: this.namedata, id: this.iduser, type: this.type, pic:this.picuser});
        let toast = this.toastCtrl.create({
-     message: "twitter don't provide email due to sequrity reasons",
+     message: "twitter don't provide email due to security reasons",
      duration: 3000,
      position: 'middle'
    });
@@ -355,7 +352,7 @@ var optionss = this.common.options;
             
            localStorage.setItem('USEREMAIL',data.data.email);
          localStorage.setItem('USERNAME',data.data.username);
-         localStorage.setItem('USERIMG',data.data.picture);
+         localStorage.setItem('USERIMG',data.data.image);
               
              this.navCtrl.push(ProcessPage);
              let toast = this.toastCtrl.create({
@@ -369,7 +366,7 @@ var optionss = this.common.options;
         
         localStorage.setItem('USEREMAIL',data.data.email);
          localStorage.setItem('USERNAME',data.data.username);
-         localStorage.setItem('USERIMG',data.data.picture);
+         localStorage.setItem('USERIMG',data.data.image);
              
            this.navCtrl.push(ListPage);
              let toast = this.toastCtrl.create({

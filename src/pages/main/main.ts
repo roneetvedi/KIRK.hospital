@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,MenuController } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
 import { SigninPage } from '../signin/signin';
 
@@ -9,7 +9,8 @@ import { SigninPage } from '../signin/signin';
 })
 export class MainPage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,public menu: MenuController,) {
+        this.menu.swipeEnable(false);
 
   }
   signup(){

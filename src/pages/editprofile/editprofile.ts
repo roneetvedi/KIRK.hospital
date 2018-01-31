@@ -95,6 +95,8 @@ var optionss = this.common.options;
     this.Loading.dismiss();
       if(data.error == '0'){
         this.prfimage = data.data.image;
+         localStorage.setItem('USERIMG',data.data.image);
+        this.events.publish('user:login');
         this.editname=data.data.username; 
         this.edittype=data.data.type;
         this.editcity=data.data.address_city;
@@ -242,7 +244,7 @@ openActionSheet(){
                     this.Loading.dismiss();
                   //  alert("img ->"+data);
                   //  alert("img ->"+JSON.stringify(data));
-                   if(data.status == "true"){
+                   if(data.status == true){
                   let toast = this.toastCtrl.create({
                   message: data.message,
                   duration: 3000,
@@ -274,7 +276,7 @@ openActionSheet(){
                               this.camera.getPicture(options).then((imageData) => {
                             this.prfimage = "data:image/jpeg;base64," + imageData;
                              this.image=imageData;
-                                localStorage.setItem("IMG",  this.prfimage);
+//                                localStorage.setItem("IMG",  this.prfimage);
                              
                                           var data_img = ({
                                               
@@ -293,7 +295,7 @@ openActionSheet(){
                   console.log(data);
    
                     this.Loading.dismiss();
-                               if(data.status == "true"){
+                               if(data.status == true){
                   let toast = this.toastCtrl.create({
                   message: data.message,
                   duration: 3000,

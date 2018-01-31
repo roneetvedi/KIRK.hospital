@@ -31,7 +31,7 @@ export class ListPage {
      myInput: any;
   errorValue: string;
   searchList: any;
-  showdata;
+  showdata;usersts;
   name: any;
   selectedItem: any;
   icons: string[];
@@ -166,7 +166,7 @@ var optionss = this.common.options;
     return result.join("&");
   }
   chkuser(){
-      alert("user chk");
+//      alert("user chk");
       var userid = localStorage.getItem("USERID");
         var data = {
       id :userid
@@ -181,12 +181,13 @@ var optionss = this.common.options;
     
     this.http.post(this.common.base_url +'users/userdetailbyid', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
     console.log(data);
+    alert(JSON.stringify(data));
     this.Loading.dismiss();
       if(data.error == 0){
 
         this.showdata=data.data;
          
-        this.chkuser=data.data.complete_status;
+        this.usersts=data.data.complete_status;
         
         
 //         alert(this.chkuser);
@@ -200,7 +201,7 @@ var optionss = this.common.options;
     toast.present();
    
         }else{
-           this.navCtrl.push(ListPage);
+//           this.navCtrl.push(ListPage);
            this.loaction();
         }
       }

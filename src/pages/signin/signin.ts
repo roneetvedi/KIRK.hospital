@@ -154,7 +154,7 @@ console.log(this.common.options);
 var optionss = this.common.options;
 this.http.post(this.common.base_url + 'allinoneexist', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
 //   alert('data');
-   alert(JSON.stringify(data));
+//   alert(JSON.stringify(data));
     console.log(data);
     
  if(data.error == '1'){
@@ -282,7 +282,7 @@ if(data.error == '1'){
             var serialized_tw = this.common.serializeObj(data_tw);
             console.log(serialized_tw);
             this.http.post(this.common.base_url + 'allinoneexist', serialized_tw, optionss).map(res=>res.json()).subscribe(data=>{
-          alert("allinone"+ JSON.stringify(data));
+//          alert("allinone"+ JSON.stringify(data));
           this.Loading.dismiss();
 if(data.error == '1'){
        this.emaildata="";
@@ -324,7 +324,7 @@ if(data.error == '1'){
         })
   }
   chkuser(){
-      alert("user chk");
+//      alert("user chk");
       var userid = localStorage.getItem("USERID");
         var data = {
       id :userid

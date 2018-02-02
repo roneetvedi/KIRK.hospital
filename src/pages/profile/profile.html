@@ -134,24 +134,48 @@
        <h1>Gallery</h1>
 <!--       <ion-slides>
          <ion-slide>-->
-           <ion-grid>
+            <ion-grid>
              <ion-row>
                <ion-col col-4>
-                  <div class="acheivmnt">
-                      <img class="achv" src="assets/imgs/achv1.png">
-                    </div>
+<!--                  <div class="acheivmnt">
+                      <div class="icn-pls"> <ion-icon class="add" name="add-circle" (click)="takePhoto()"></ion-icon></div>
+                    </div>-->
                </ion-col>
+                 <ion-col col-2></ion-col>
+             </ion-row>
+               <ion-row>
+                    <div *ngFor="let document of editdocs" >
+                <ion-col col-4>
+                       
+                        <div class="upldimg" >
+                         
+                            <!--<div class="icn-crs"><ion-icon name="close-circle" (click)="delete(document._id)"></ion-icon> </div>-->     
+                            
+                         
+          <img *ngIf="this.docloop != ''" class="pic" src={{document.name}} >
+                            </div>
+                 </ion-col>
+                   </div>
+                
+               
+                   
+             
+                   
+                  
+               
+               
+               </ion-row>
 <!--               <ion-col col-4>
                   <div class="acheivmnt">
-                      <img class="achv" src="assets/imgs/achv2.png">
+                      <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
                     </div>
                </ion-col>
                <ion-col col-4>
                   <div class="acheivmnt">
-                      <img class="achv" src="assets/imgs/achv2.png">
+                      <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
                     </div>
                </ion-col>-->
-             </ion-row>
+            
            </ion-grid>
 <!--     </ion-slide>
 

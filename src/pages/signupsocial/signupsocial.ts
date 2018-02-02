@@ -229,14 +229,14 @@ var optionss = this.common.options;
                  
          localStorage.setItem('USEREMAIL',data.data.email);
          localStorage.setItem('USERNAME',data.data.name);
-         localStorage.setItem('USERIMG',data.data.picture);
+         localStorage.setItem('USERIMG',data.data.image);
            this.events.publish('user:login');
              this.navCtrl.push(ProcessPage);
         }else{
           
          localStorage.setItem('USEREMAIL',data.data.email);
          localStorage.setItem('USERNAME',data.data.name);
-         localStorage.setItem('USERIMG',data.data.picture);
+         localStorage.setItem('USERIMG',data.data.image);
            this.events.publish('user:login');
 //        alert("bhai ko janedo");
            this.navCtrl.push(ListPage);

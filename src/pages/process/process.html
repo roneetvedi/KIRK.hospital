@@ -75,20 +75,22 @@
                          <div class="prcsbx">
                            <ion-grid no-padding>
                              <ion-row>
-                               <ion-col col-2>
-                                  <h5 (click)="calndr()">Days</h5>
+                               <ion-col col-4>
+                                  <h5>Available Days</h5>
                                 </ion-col>
-                                <ion-col col-5>
-                                    <ion-item class="slct-dt">
+                                
                                         
-   <ion-label>From</ion-label>
-    <!-- <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
-                                      </ion-item> -->
-                                      <!-- <div class="prcsbx"> -->
-                                         
-                                          <!-- <ion-item class="slct"> -->
-                                            <!-- <ion-label>Status</ion-label> -->
-                                            <ion-select [(ngModel)]="data.days" id="days" name="days" #days="ngModel">
+   
+   
+     <ion-list class="dyz-box"  >
+ <ion-item *ngFor="let day of days">
+     <ion-label>{{day}}</ion-label>
+  <ion-checkbox (ionChange)="updateCheckedOptions(day, $event.checked)"></ion-checkbox>
+ </ion-item>
+</ion-list>
+  
+
+<!--                                            <ion-select [(ngModel)]="data.days" id="days" name="days" #days="ngModel">
                                               <ion-option>Monday</ion-option>
                                               <ion-option>Tuesday</ion-option>
                                               <ion-option>Wednesday</ion-option>
@@ -99,12 +101,11 @@
                                               
                                             </ion-select>
                                           </ion-item>
-                                        <!-- </div>                                 -->
-                                  </ion-col> 
-                                  <ion-col col-5>
+                                         </div>                                 -->
+                            
+<!--                                  <ion-col col-5>
                                       <ion-item class="slct-dt">
         <ion-label>End</ion-label>
-   <!-- <ion-datetime displayFormat="MM/DD/YYYY" ></ion-datetime> -->
    <ion-select [(ngModel)]="data.enddays" name="enddays" id="enddays" #enddays="ngModel">
  
       <ion-option>Monday</ion-option>
@@ -117,7 +118,48 @@
       
     </ion-select>
                                         </ion-item>
-                                    </ion-col> 
+
+ <ion-label>End:</ion-label>
+  <ion-list class="dyz-box" [(ngModel)]="data.enddays" name="enddays" id="enddays" #enddays="ngModel" >
+
+  <ion-item>
+    <ion-label>sunday</ion-label>
+    <ion-checkbox ></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Monday</ion-label>
+    <ion-checkbox></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Tuesday</ion-label>
+    <ion-checkbox></ion-checkbox>
+  </ion-item>
+      
+        <ion-item>
+    <ion-label>Wednesday</ion-label>
+    <ion-checkbox></ion-checkbox>
+  </ion-item>
+      
+        <ion-item>
+    <ion-label>Thursday</ion-label>
+    <ion-checkbox></ion-checkbox>
+  </ion-item>
+      
+        <ion-item>
+    <ion-label>Friday</ion-label>
+    <ion-checkbox></ion-checkbox>
+  </ion-item>
+        <ion-item>
+    <ion-label>Saturday</ion-label>
+    <ion-checkbox></ion-checkbox>
+  </ion-item>
+
+</ion-list>
+
+
+                                    </ion-col> -->
                               </ion-row>
                             </ion-grid>
                                     
@@ -192,7 +234,36 @@
                   </ion-item>
                 </div>
                   </ion-col></ion-row>
-           
+            <ion-row>
+           <ion-col col-12 no-padding>    
+              <div class="prcsbx">
+                  <label>Phone Number</label>        
+              <ion-item>
+              
+                <ion-input type="number" [(ngModel)]="data.phone" name="phone" #phone="ngModel" pattern='[0-9]+' maxlength="15" minlength="10"></ion-input>
+            </ion-item></div> 
+               <ion-label class="alert alert-danger" color="danger">
+  
+         <div *ngIf="phone.errors && (phone.dirty || phone.touched)">
+         <div [hidden]="!phone.errors.required" >
+           Field is required
+          </div>
+          <div [hidden]="!phone.errors.pattern" >
+           Invalid Format
+          </div>
+           <div [hidden]="!phone.errors.maxlength" >
+           Maximum 10 number
+          </div>
+      </div>
+      </ion-label></ion-col></ion-row>
+            <ion-row>
+           <ion-col col-12 no-padding>    
+              <div class="prcsbx">
+                  <label>Charges</label>        
+              <ion-item>
+              
+                <ion-input type="number" [(ngModel)]="data.charges" name="charges" #charges="ngModel"></ion-input>
+            </ion-item></div></ion-col></ion-row>
                        <!-- </ion-list> -->
               </ion-grid>
 </ion-list>
@@ -212,12 +283,29 @@
                     </div>
                </ion-col>
                  <ion-col col-2></ion-col>
-                 <ion-col col-4>
-                        <div class="upldimg">
-                             <img *ngIf="this.base64Image == '' || this.base64Image == undefined"  class="pic" src="assets/imgs/no-user-image.gif"/>
-          <img *ngIf="this.base64Image != ''" class="pic" [src]="this.base64Image"/>
+             </ion-row>
+               <ion-row>
+                    <div *ngFor="let document of docloop" >
+                <ion-col col-4>
+                       
+                        <div class="upldimg" >
+                         
+                            <div class="icn-crs"><ion-icon name="close-circle" (click)="delete(document._id)"></ion-icon> </div>     
+                            
+                         
+          <img *ngIf="this.docloop != ''" class="pic" src={{document.name}} >
                             </div>
                  </ion-col>
+                   </div>
+                
+               
+                   
+             
+                   
+                  
+               
+               
+               </ion-row>
 <!--               <ion-col col-4>
                   <div class="acheivmnt">
                       <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
@@ -228,7 +316,7 @@
                       <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
                     </div>
                </ion-col>-->
-             </ion-row>
+            
            </ion-grid>
 <!--     </ion-slide>
 

@@ -181,7 +181,7 @@ var optionss = this.common.options;
     
     this.http.post(this.common.base_url +'users/userdetailbyid', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
     console.log(data);
-    alert(JSON.stringify(data));
+//    alert(JSON.stringify(data));
     this.Loading.dismiss();
       if(data.error == 0){
 

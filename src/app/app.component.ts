@@ -114,23 +114,23 @@ console.log(localStorage.getItem("G+DATA"));
        this.twtdata = localStorage.getItem("TWTDATA");
 //       alert(this.twtdata);
     if(this.fbdata!= null){
-        alert("F");
+//        alert("F");
       this.fb.logout().then((sucess) => {
       localStorage.clear();
     this.app.getRootNav().setRoot(SigninPage);
-     this.showToast("You have been F Logged Out");
+     this.showToast("You have been Logged Out");
     }).catch((error) => {
       alert(error);
        console.log(error)
     })
     }else if(this.googledata != null){ 
-    alert("G");
+//    alert("G");
    this.googlePlus.logout().then(
         (success) => {
              localStorage.clear();
               this.app.getRootNav().setRoot(SigninPage);
             console.log('GOOGLE+: logout DONE', success);
-            this.showToast("You have been G Logged Out");
+            this.showToast("You have been Logged Out");
         },
         (failure) => {
             console.log('GOOGLE+: logout FAILED', failure);
@@ -140,13 +140,13 @@ console.log(localStorage.getItem("G+DATA"));
        console.log(error)
     })
     } else if (this.twtdata != null){
-    alert("T");
+//    alert("T");
         this.TwitterConnect.logout().then(
         (success) => {
              localStorage.clear();
               this.app.getRootNav().setRoot(SigninPage);
             console.log('TwitterConnect: logout DONE', success);
-            this.showToast("You have been T Logged Out");
+            this.showToast("You have been Logged Out");
         },
         (failure) => {
             console.log('TwitterConnect: logout FAILED', failure);
@@ -156,11 +156,11 @@ console.log(localStorage.getItem("G+DATA"));
        console.log(error)
     })
    }else{
-    alert("logoutttt");
+//    alert("logoutttt");
     localStorage.clear();
     // this.navCtrl.setRoot(SigninPage);
     this.app.getRootNav().setRoot(SigninPage);
-    this.showToast("You have been N Logged Out");
+    this.showToast("You have been Logged Out");
     }
 
 }

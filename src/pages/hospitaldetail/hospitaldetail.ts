@@ -106,7 +106,7 @@ var optionss = this.common.options;
           hospital_id:this.hospital_id,
           user_id:this.user_id
       }
-      alert(JSON.stringify(data));
+//      alert(JSON.stringify(data));
       var optionss = this.common.options;
 
     var Serialized = this.serializeObj(data);

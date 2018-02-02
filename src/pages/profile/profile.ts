@@ -35,6 +35,7 @@ public editexp='';
 public editedu='';
 public editcharges='';
 public editawrd='';
+public editdocs='';
   constructor(public navCtrl: NavController,
     public navParams: NavParams,public http:Http,public events:Events,
     public common : CommonProvider, private toastCtrl: ToastController,
@@ -63,7 +64,7 @@ var optionss = this.common.options;
     console.log(Serialized);
     
     this.http.post(this.common.base_url +'users/userdetailbyid', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
-//        alert(JSON.stringify(data))
+//        alert(JSON.stringify(data));
     console.log(data);
     this.Loading.dismiss();
       if(data.error == 0){
@@ -71,7 +72,7 @@ var optionss = this.common.options;
         this.showdata=data.data;
          this.prfimage = data.data.image;
          localStorage.setItem('USERIMG',data.data.image);
-        this.events.publish('user:login');
+      
         this.editname=data.data.username; 
         this.edittype=data.data.type;
         this.editcity=data.data.address_city;
@@ -85,7 +86,9 @@ var optionss = this.common.options;
         this.editedu=data.data.education;
         this.editcharges=data.data.charges;
         this.editawrd=data.data.awards;
-        console.log(this.showdata);
+        this.editdocs=data.data.docs;
+        console.log(this.editdocs);
+          this.events.publish('user:login');
   //       let toast = this.toastCtrl.create({
   //   message: data.message,
   //   duration: 3000,

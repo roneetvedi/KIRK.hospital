@@ -18,20 +18,23 @@
   <ion-grid  no-padding>
     <ion-row>
       <ion-col col-12 no-padding>
-        <div class="prfl-detl" (click)="detail()">
-          <ion-grid>
+          <div *ngFor="let flisting of listfavdata">
+        <div class="prfl-detl" (click)="detail(flisting._id)"  >
+            <img class="favimg" src={{this.url}}{{flisting.bannerimage}}>
+               <div class="ovrly_hrt">
+          <ion-grid class="favbox">
             <ion-row>
             <ion-col col-7>
-              <h4> Westside Surgical,  MD 21061,USA </h4>
+              <h4> {{flisting.title}},  {{flisting.country}} </h4>
             </ion-col>
             <ion-col col-5>
-              <div class="heart-bx1">
-                <ion-icon class="heart1" name="heart"></ion-icon></div>
+              <div class="heart-bx">
+               <ion-icon class="heart" name="heart"  ></ion-icon></div>
               </ion-col>
            </ion-row>
         <ion-row>
           <ion-col col-1>  <ion-icon class="pin" name="pin"></ion-icon></ion-col>
-          <ion-col col-5><h5>Lakeland, FL</h5></ion-col>
+          <ion-col col-5><h5>{{flisting.city}}</h5></ion-col>
           <ion-col ocl-6>
             <div class="multistars">
               <ion-icon class="star" name="star"></ion-icon>
@@ -41,10 +44,10 @@
               <ion-icon class="star" name="star"></ion-icon></div>
           </ion-col>
         </ion-row>
-          </ion-grid>
+          </ion-grid></div>
         </div>
- 
-        <div class="prfl-detl1">
+      </div>
+<!--        <div class="prfl-detl1">
             <ion-grid>
                 <ion-row>
                 <ion-col col-7>
@@ -198,7 +201,7 @@
             </ion-col>
           </ion-row>
             </ion-grid>
-       </div>
+       </div>-->
 
       </ion-col>
     </ion-row>

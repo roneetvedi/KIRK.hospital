@@ -84,6 +84,7 @@ if(data.error == 0){
     position: 'middle'
   });
   toast.present();
+ 
   //alert("Passwords do not match");
 }
     })

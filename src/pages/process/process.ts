@@ -15,6 +15,7 @@ import{App} from 'ionic-angular';
 import { TwitterConnect } from '@ionic-native/twitter-connect';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { ImageViewerController } from 'ionic-img-viewer';
 @Component({
   selector: 'page-process',
   templateUrl: 'process.html'
@@ -41,12 +42,14 @@ public photos : any;
 days;deletedoc;
  myForm: FormGroup;
   public base64Image : string;
+   _imageViewerCtrl: ImageViewerController;
   constructor(public navCtrl: NavController,public events:Events,
     public navParams: NavParams,public http:Http,
     public app:App,private camera: Camera,public menu: MenuController,private googlePlus: GooglePlus,
-    public common : CommonProvider, private toastCtrl: ToastController,
+    public common : CommonProvider, private toastCtrl: ToastController,public imageViewerCtrl: ImageViewerController,
     public actionSheetCtrl: ActionSheetController, private builder: FormBuilder,
     public loadingCtrl:LoadingController,public fb:Facebook, public TwitterConnect:TwitterConnect) {
+        this._imageViewerCtrl = imageViewerCtrl;
    this.myForm = builder.group({
       worksites: builder.array([])
     })
@@ -59,7 +62,7 @@ days;deletedoc;
 country(){
 //     alert('show countryrrr');
 //     alert("array");
-     this.days = ["sunday","monday","tuesday","wednesday","thrusday","friday","saturday"];
+     this.days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 console.log(this.days);
 //    var optionss = this.common.options;
 this.loading.present().then(() => {
@@ -74,12 +77,14 @@ var optionss = this.common.options;
         
         this.countries=data.country;
         console.log(data.country);
-    
-    })
+        })
        })
  }
  openActionSheet(){
-               
+             var Loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+    
+  });     
                
                 let actionsheet = this.actionSheetCtrl.create({
                 title:"Choose Album",
@@ -87,7 +92,7 @@ var optionss = this.common.options;
                 text: 'Camera',
                 handler: () => {
                 console.log("Camera Clicked");
-                 this.Loading.present();
+                
                   const options: CameraOptions = {
                   quality: 8,
                   sourceType : 1,
@@ -108,6 +113,7 @@ var optionss = this.common.options;
                profile_picture :this.image
                       })
 //                    alert("image" + JSON.stringify(data_img));
+                     
                     var serialized_img = this.serializeObj(data_img); 
                     console.log(serialized_img);
                    console.log(this.common.options);
@@ -115,10 +121,11 @@ var optionss = this.common.options;
                 
                   var Serialized = this.serializeObj(data_img);
                   console.log(Serialized);
+                   Loading.present().then(() => {
                   this.http.post(this.common.base_url +'profilepicupload', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
-                      alert(JSON.stringify(data));
+//                      alert(JSON.stringify(data));
    
-                    this.Loading.dismiss();
+                    Loading.dismiss();
                   //  alert("img ->"+data);
                   //  alert("img ->"+JSON.stringify(data));
                    if(data.status == true){
@@ -131,20 +138,20 @@ var optionss = this.common.options;
                 });
                   toast.present();
                   this.image='';
-             
+           
                   // this.data= data; 
     }
       });
       
                 }, (err) => {
                 alert("Server not Working,Please Check your Internet Connection and try again!");
-                this.Loading.dismiss();
+                
                 });
-                }
+               }) }
                 },{
                 text: 'Gallery',
                 
-                handler: () => { this.Loading.present();
+                handler: () => { 
                                 const options: CameraOptions = {
                                 quality: 8,
                                 sourceType : 0,
@@ -162,7 +169,7 @@ var optionss = this.common.options;
                                  user_id :this.userid,
                                   profile_picture :this.image
                       })
-                              
+                             
                                 var serialized_img = this.serializeObj(data_img); 
                     console.log(serialized_img);
                    console.log(this.common.options);
@@ -170,10 +177,11 @@ var optionss = this.common.options;
                 
                   var Serialized = this.serializeObj(data_img);
                   console.log(Serialized);
+                    Loading.present().then(() => {
                   this.http.post(this.common.base_url +'profilepicupload', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
                   console.log(data);
    
-                    this.Loading.dismiss();
+                    Loading.dismiss();
                                if(data.status == true){
                                       localStorage.setItem("USERIMG",data.data); 
                        this.events.publish('user:login');
@@ -184,12 +192,13 @@ var optionss = this.common.options;
                 });
                   toast.present();
                   this.image='';
+                   
                   // this.data= data; 
     }
       });
-                              }, (err) => {
+                               })           }, (err) => {
                               alert("Server not Working,Please Check your Internet Connection and try again!");
-                              this.Loading.dismiss();
+                       
                               });
                 }
                 },
@@ -198,7 +207,7 @@ var optionss = this.common.options;
                         role: 'cancel',
                         handler: () => {
                           console.log('Cancel clicked');
-                          this.Loading.dismiss();
+                   
                           //  actionsheet.dismiss()         
                         }
                       }
@@ -227,13 +236,15 @@ var optionss = this.common.options;
   }
 }          
  gotolist(heroForm){
-//     alert('show detailrrr');
-
+    var Loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+    
+  });
 var datadays = localStorage.getItem("serviceItems");
     var post_data = {
           id:this.userid,
            available_status:heroForm.value.status,
-          description:heroForm.value.description,
+          description:heroForm.value.notes,
           available_from:datadays,
           charges:heroForm.value.charges,
           phone:heroForm.value.phone,
@@ -242,7 +253,8 @@ var datadays = localStorage.getItem("serviceItems");
           address_city:heroForm.value.city,
       
     }
-    alert("post_datarrr" + JSON.stringify(post_data));
+//    alert("post_datarrr" + JSON.stringify(post_data));
+    Loading.present().then(() => {
     console.log(this.common.options);
 var optionss = this.common.options;
 
@@ -250,9 +262,9 @@ var optionss = this.common.options;
     console.log(Serialized);
     
     this.http.post(this.common.base_url +'editusrdetails', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
-        alert(JSON.stringify(data));
+//        alert(JSON.stringify(data));
     console.log(data);
-
+    Loading.dismiss();
 //    alert("loding toh baad");
       if(data.error == '0'){
 //          alert("data saved");
@@ -313,7 +325,7 @@ var optionss = this.common.options;
      
        let toast = this.toastCtrl.create({
      message: data.message,
-     duration: 3000,
+     duration: 6000,
      position: 'middle'
    });
     toast.present();
@@ -326,6 +338,7 @@ var optionss = this.common.options;
     toast.present();
       }
   
+         })
          })
  }
  serializeObj(obj) {
@@ -348,14 +361,17 @@ var optionss = this.common.options;
    }
 takePhoto() {
 //    alert("in");
+    var Loading = this.loadingCtrl.create({
+    content: 'Please wait...'
     
+  });
        let actionsheet = this.actionSheetCtrl.create({
                 title:"Choose Album",
                 buttons:[{
                 text: 'Camera',
                 handler: () => {
                 console.log("Camera Clicked");
-                 this.Loading.present();
+
                   const options: CameraOptions = {
                   quality: 8,
                   sourceType : 1,
@@ -374,7 +390,8 @@ takePhoto() {
                                  user_id :this.userid,
                                  docs :this.image
                       })
-                    alert("image" + JSON.stringify(data_img));
+                       Loading.present().then(() => {
+//                    alert("image" + JSON.stringify(data_img));
                     var serialized_img = this.serializeObj(data_img); 
                     console.log(serialized_img);
                    console.log(this.common.options);
@@ -383,14 +400,14 @@ takePhoto() {
                   var Serialized = this.serializeObj(data_img);
                   console.log(Serialized);
                   this.http.post(this.common.base_url +'docupload', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
-                      alert(JSON.stringify(data));
+//                      alert(JSON.stringify(data));
    
-                    this.Loading.dismiss();
+                    Loading.dismiss();
                   //  alert("img ->"+data);
                   //  alert("img ->"+JSON.stringify(data));
                    if(data.error =='0'){
                           this.docloop=data.data;
-                          alert(JSON.stringify(this.docloop));
+//                          alert(JSON.stringify(this.docloop));
                   let toast = this.toastCtrl.create({
                   message: data.message,
                   duration: 3000,
@@ -402,16 +419,17 @@ takePhoto() {
                   // this.data= data; 
     }
       });
+      })
       
                 }, (err) => {
                 alert("Server not Working,Please Check your Internet Connection and try again!");
-                this.Loading.dismiss();
+
                 });
                 }
                 },{
                 text: 'Gallery',
                 
-                handler: () => { this.Loading.present();
+                handler: () => { 
                                 const options: CameraOptions = {
                                 quality: 8,
                                 sourceType : 0,
@@ -421,31 +439,32 @@ takePhoto() {
                               }
                               this.camera.getPicture(options).then((imageData) => {
                             this.base64Image = "data:image/jpeg;base64," + imageData;
-                             this.photos.push(this.base64Image);
-                             this.photos.reverse();
+//                             this.photos.push(this.base64Image);
+//                             this.photos.reverse();
                              this.image=imageData;
                                 localStorage.setItem("IMG",  this.prfimage);
                               var data_img = ({
                                  user_id :this.userid,
                                  docs :this.image
                       })
+                      
 //                    alert("image" + JSON.stringify(data_img));
 //                    var serialized_img = this.serializeObj(data_img); 
 //                    console.log(serialized_img);
                    console.log(this.common.options);
                   var optionss = this.common.options;
-                
+                 Loading.present().then(() => {
                   var Serialized = this.serializeObj(data_img);
                   console.log(Serialized);
                   this.http.post(this.common.base_url +'docupload', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
 //                      alert(JSON.stringify(data));
    
-                    this.Loading.dismiss();
+                    Loading.dismiss();
                   //  alert("img ->"+data);
                   //  alert("img ->"+JSON.stringify(data));
-                   if(data.error == "0"){
+                   if(data.error == '0'){
                           this.docloop=data.data;
-                          alert(JSON.stringify(this.docloop));
+//                          alert(JSON.stringify(this.docloop));
                   let toast = this.toastCtrl.create({
                   message: data.message,
                   duration: 3000,
@@ -457,9 +476,10 @@ takePhoto() {
                   // this.data= data; 
     }
       });
+      })
                               }, (err) => {
                               alert("Server not Working,Please Check your Internet Connection and try again!");
-                              this.Loading.dismiss();
+                              
                               });
                 }
                 },
@@ -468,7 +488,7 @@ takePhoto() {
                         role: 'cancel',
                         handler: () => {
                           console.log('Cancel clicked');
-                          this.Loading.dismiss();
+                          
                           //  actionsheet.dismiss()         
                         }
                       }
@@ -478,24 +498,27 @@ takePhoto() {
                   actionsheet.present();
   }
   delete(id){
-      alert("delete");
-      var data = {
+var Loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+    
+  });
+        var data = {
           doc_id:id,
           user_id:this.userid
       }
-      alert(JSON.stringify(data));
-                   console.log(this.common.options);
+                  console.log(this.common.options);
                   var optionss = this.common.options;
                 
                   var Serialized = this.serializeObj(data);
                   console.log(Serialized);
+                 Loading.present().then(() => {  
                   this.http.post(this.common.base_url +'removedoc', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
-                      alert(JSON.stringify(data));
+//                      alert(JSON.stringify(data));
    
-                    this.Loading.dismiss();
-           
+                       Loading.dismiss();
                    if(data.error == '0'){
-                       this.deletedoc=data.data;
+                       this.docloop=data.data;
+                       
                   let toast = this.toastCtrl.create({
                   message: data.message,
                   duration: 3000,
@@ -503,9 +526,18 @@ takePhoto() {
                 });
                   toast.present();
                   this.image='';
-             
-                  // this.data= data; 
+                 
     }
       });
+     })
+     
+  }
+  presentImage(myImage) {
+//      alert("ncj");
+    const imageViewer = this._imageViewerCtrl.create(myImage);
+    imageViewer.present();
+ 
+    setTimeout(() => imageViewer.dismiss(),3000);
+    imageViewer.onDidDismiss(() => console.log('Viewer dismissed'));
   }
 }

@@ -58,18 +58,6 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- <ion-header no-border>
-    <ion-toolbar>
-      <button ion-button menuToggle left>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>Header</ion-title>
-      <button ion-button menuToggle right>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-toolbar>
-  </ion-header> -->
-
 <ion-content class="prfl">
     
  <ion-grid class="listgrid">
@@ -137,9 +125,7 @@
             <ion-grid>
              <ion-row>
                <ion-col col-4>
-<!--                  <div class="acheivmnt">
-                      <div class="icn-pls"> <ion-icon class="add" name="add-circle" (click)="takePhoto()"></ion-icon></div>
-                    </div>-->
+
                </ion-col>
                  <ion-col col-2></ion-col>
              </ion-row>
@@ -152,55 +138,15 @@
                             <!--<div class="icn-crs"><ion-icon name="close-circle" (click)="delete(document._id)"></ion-icon> </div>-->     
                             
                          
-          <img *ngIf="this.docloop != ''" class="pic" src={{document.name}} >
+          <img *ngIf="this.editdocs != ''" class="pic" src={{document.name}} (close)="callbackAfterImageViewerCloses()" #youImage (click)="presentImage(youImage)" >
                             </div>
                  </ion-col>
                    </div>
                 
-               
-                   
-             
-                   
-                  
-               
-               
                </ion-row>
-<!--               <ion-col col-4>
-                  <div class="acheivmnt">
-                      <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
-                    </div>
-               </ion-col>
-               <ion-col col-4>
-                  <div class="acheivmnt">
-                      <div class="icn-pls"> <ion-icon class="add" name="add-circle"></ion-icon></div>
-                    </div>
-               </ion-col>-->
             
            </ion-grid>
-<!--     </ion-slide>
 
-        <ion-slide>
-            <ion-grid>
-                <ion-row>
-                  <ion-col col-4>
-                     <div class="acheivmnt">
-                         <img class="achv" src="assets/imgs/achv1.png">
-                       </div>
-                  </ion-col>
-                  <ion-col col-4>
-                     <div class="acheivmnt">
-                         <img class="achv" src="assets/imgs/achv2.png">
-                       </div>
-                  </ion-col>
-                  <ion-col col-4>
-                     <div class="acheivmnt">
-                         <img class="achv" src="assets/imgs/achv2.png">
-                       </div>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-        </ion-slide>
-       </ion-slides>-->
      </ion-col>
    </ion-row>
  </ion-grid>

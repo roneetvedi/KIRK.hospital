@@ -34,9 +34,9 @@
     <ion-row>
       <ion-col col-12 no-padding>
 <!--          <div    *ngFor="let listing of listdata">-->
-          <div  style="height:150px;" class="box-bgimage"  *ngFor="let listing of listdata">
+          <div  style="height:129px;" class="box-bgimage"  *ngFor="let listing of listdata">
                 <div class="cls_hrt">
-              <img class="hspimg" src={{this.url}}{{listing.bannerimage}}/> 
+              <img class="hspimg" src={{this.url}}{{listing.data.bannerimage}}/> 
               </div>
                 <div class="ovrly_hrt">
               
@@ -45,23 +45,22 @@
           <ion-grid class="prfl-detl">
             <ion-row>
             <ion-col col-7>
-              <h4 (click)="detail(listing._id,listing.user_id)"> {{listing.title}}</h4>
+              <h4 (click)="detail(listing.data._id,listing.data.user_id)"> {{listing.data.title}}</h4>
             </ion-col>
             <ion-col col-5>
-              <div class="heart-bx" >
-                <ion-icon class="heart" name="heart" ></ion-icon></div>
+              <div class="heart-bx" *ngIf="listing.like == '0'">
+                <ion-icon class="heart" name="heart" (click)="detail(listing.data._id,listing.data.user_id)" ></ion-icon>
+              </div>
+                  <div class="heart-bx1" *ngIf="listing.like == '1' || listing.like == undefined" >
+                    <ion-icon class="heart1" name="heart" (click)="detail(listing.data._id,listing.data.user_id)" ></ion-icon></div>
               </ion-col>
            </ion-row>
         <ion-row>
           <ion-col col-1>  <ion-icon class="pin" name="pin"></ion-icon></ion-col>
-          <ion-col col-5><h5>{{listing.city}},{{listing.country}}</h5></ion-col>
+          <ion-col col-5><h5>{{listing.data.city}},{{listing.data.country}}</h5></ion-col>
           <ion-col ocl-6>
             <div class="multistars">
-              <ion-icon class="star" name="star"></ion-icon>
-              <ion-icon class="star" name="star"></ion-icon>
-              <ion-icon class="star" name="star"></ion-icon>
-              <ion-icon class="star" name="star"></ion-icon>
-              <ion-icon class="star" name="star"></ion-icon></div>
+              <rating [(ngModel)]="listing.avr_rating" readOnly="true"  name="rate"></rating></div>
           </ion-col>
         </ion-row>
           </ion-grid>

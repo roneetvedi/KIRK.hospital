@@ -11,19 +11,16 @@ import {LoadingController} from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import{App} from 'ionic-angular';
 import { ProcessPage } from '../process/process';
-
+import { Ionic2RatingModule } from 'ionic2-rating';
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
 })
 export class ListPage {
-    public Loading = this.loadingCtrl.create({
-    content: 'Please wait...'
     
-  });
-     loading = this.Loading;
+
     latitude:any;
-  
+  public ratelist="";
     longitude:any;
     public userids="";
     listdata;
@@ -34,6 +31,8 @@ export class ListPage {
   showdata;usersts;
   name: any;
   selectedItem: any;
+  public favdata='';
+  public rate='';rating;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
@@ -63,6 +62,7 @@ export class ListPage {
     this.userids = localStorage.getItem("USERID");
     console.log(this.userids);
      this.events.publish('user:login');
+     
      this.chkuser();
   }
 
@@ -98,6 +98,10 @@ export class ListPage {
    }
    hosplist(lat,long){
 //       alert("list");
+       var Loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+    
+  });
        var data = {
       latitude:lat, 
       longitude:long,
@@ -109,14 +113,15 @@ var optionss = this.common.options;
 
     var Serialized = this.serializeObj(data);
     console.log(Serialized);
-    
+    Loading.present().then(() => {
     this.http.post(this.common.base_url +'findhospitalbycordinates', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
     console.log(data);
-    this.Loading.dismiss();
+    Loading.dismiss();
       if(data.error == '0'){
 //       alert("data displayed");
        this.listdata=data.data;
-       console.log(this.listdata);
+
+       console.log(this.favdata);
        this.url = this.common.banner_url;
       }else{
         //alert(data.message);
@@ -129,7 +134,7 @@ var optionss = this.common.options;
       }
 
     })
-  
+    })
    }
    setFilteredItems(){
   
@@ -166,7 +171,10 @@ var optionss = this.common.options;
     return result.join("&");
   }
   chkuser(){
-//      alert("user chk");
+var Loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+    
+  });
       var userid = localStorage.getItem("USERID");
         var data = {
       id :userid
@@ -178,11 +186,11 @@ var optionss = this.common.options;
 
     var Serialized = this.serializeObj(data);
     console.log(Serialized);
-    
+    Loading.present().then(() => {
     this.http.post(this.common.base_url +'users/userdetailbyid', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
     console.log(data);
 //    alert(JSON.stringify(data));
-    this.Loading.dismiss();
+    Loading.dismiss();
       if(data.error == 0){
 
         this.showdata=data.data;
@@ -201,11 +209,56 @@ var optionss = this.common.options;
     toast.present();
    
         }else{
-//           this.navCtrl.push(ListPage);
-           this.loaction();
+ this.rating= this.navParams.get('rating');
+    console.log(this.rating);
+    if(this.rating == undefined){
+//         alert("sai")
+          this.loaction();
+     }else{
+         this.ratingfilter();
+     }
+          
         }
       }
 
+    })
+    })
+  }
+  ratingfilter(){
+        var Loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+    
+  });
+       var data = {
+     
+     }
+     console.log(data);
+    console.log(this.common.options);
+var optionss = this.common.options;
+
+    var Serialized = this.serializeObj(data);
+    console.log(Serialized);
+    Loading.present().then(() => {
+    this.http.post(this.common.base_url +'hospitals/filter', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
+    console.log(data);
+    Loading.dismiss();
+      if(data.error == '0'){
+//       alert("data displayed");
+       this.listdata=data.data;
+
+       console.log(this.ratelist);
+       this.url = this.common.banner_url;
+      }else{
+        //alert(data.message);
+  let toast = this.toastCtrl.create({
+     message: data.message,
+     duration: 3000,
+     position: 'middle'
+   });
+    toast.present();
+      }
+
+    })
     })
   }
 }

@@ -45,9 +45,11 @@ this.menu.swipeEnable(false);
    }
 signup_form(signup)
         {
+//    alert(JSON.stringify(signup.value.password));
+//    alert(JSON.stringify(signup.value.cpassword));
 //            alert('signup');
-          this.loading.present().then(() => {
-     if(signup.value.password=signup.value.cpassword){
+//          this.loading.present().then(() => { 
+     if(signup.value.password == signup.value.cpassword){
         
         console.log(this.common.options);
         var optionss = this.common.options;
@@ -67,7 +69,7 @@ signup_form(signup)
           this.http.post(this.common.base_url +'users/register',Serialized, optionss).map(res=>res.json()).subscribe(data=>{
           // alert(data);
           // alert(JSON.stringify(data));
-          this.Loading.dismiss();
+//          this.Loading.dismiss();
             console.log(data);
           
            
@@ -97,6 +99,7 @@ signup_form(signup)
             }
           })
         }else{
+//        alert("into password")
              let toast = this.toastCtrl.create({
             message:"your password and Confirn password doesnot match",
             duration: 3000,
@@ -104,7 +107,7 @@ signup_form(signup)
           });
           toast.present();
         }
-          })
+//          })
         }
          serializeObj(obj) {
             var result = [];
@@ -114,7 +117,7 @@ signup_form(signup)
             return result.join("&");
           }
            facebook(){
-//      alert('faceboo');
+      alert('facebook');
        
     let permissions = new Array<string>();
     let nav = this.navCtrl;

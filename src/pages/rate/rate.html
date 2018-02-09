@@ -4,7 +4,7 @@
     <button  class="backbtn" (click)="backtohosptldtl()" pull-right>
         <ion-icon name="close"></ion-icon>
     </button>
-
+    <form #reviewForm="ngForm">
   <div style="width: 100%; height:176px;"></div>
 <div class="cnfrnbox">
   <ion-list class="ratelist">
@@ -16,19 +16,15 @@
  </ion-row>
   <ion-row>
       <ion-col col-12>
-        <div class="starrvw">
-        <ion-icon class="star" name="star"></ion-icon>
-        <ion-icon class="star" name="star"></ion-icon>
-        <ion-icon class="star" name="star"></ion-icon>
-        <ion-icon class="star" name="star"></ion-icon>
-        <ion-icon class="star" name="star"></ion-icon></div>
+          <div class="star">
+              <rating [(ngModel)]="rate" readOnly="false" (ngModelChange)="onModelChange($event)" name="rate"></rating></div>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-12>
           <ion-item>
               <ion-label stacked>Comment</ion-label>
-              <ion-textarea type="text" rows="3"></ion-textarea>
+              <ion-textarea type="text" rows="3" [(ngModel)]="data.notes" name="notes" #notes="ngModel"></ion-textarea>
         </ion-item>
           <!-- <ion-item>
               <ion-input type="text" placeholder="Comment"></ion-input>
@@ -38,9 +34,10 @@
     <ion-row>
      
       <ion-col col-12>
-        <button ion-button full color="blue" class="btnblu" (click)="hosptldtl()">Submit</button>
+        <button ion-button full color="blue" class="btnblu" (click)="hosptldtl(reviewForm)">Submit</button>
       </ion-col>
     </ion-row></ion-grid></ion-list>
   </div>
+  </form>
 </ion-content>
 

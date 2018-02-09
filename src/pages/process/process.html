@@ -57,10 +57,12 @@
            <ion-col col-12 no-padding>    
               <div class="prcsbx">
                   <label>Description</label>        
-              <ion-item>
+<!--              <ion-item>
               
                 <ion-input type="text" name="description" [(ngModel)]="data.description" id="description" #description="ngModel"></ion-input>
-            </ion-item></div></ion-col></ion-row>
+            </ion-item>-->
+ <ion-textarea type="text" rows="2" [(ngModel)]="data.notes" name="notes" #notes="ngModel"></ion-textarea>
+              </div></ion-col></ion-row>
                 <!-- </ion-list> -->
        </ion-grid>
 
@@ -82,12 +84,12 @@
                                         
    
    
-     <ion-list class="dyz-box"  >
+     <div class="dyz-box"  >
  <ion-item *ngFor="let day of days">
      <ion-label>{{day}}</ion-label>
   <ion-checkbox (ionChange)="updateCheckedOptions(day, $event.checked)"></ion-checkbox>
  </ion-item>
-</ion-list>
+</div>
   
 
 <!--                                            <ion-select [(ngModel)]="data.days" id="days" name="days" #days="ngModel">
@@ -240,7 +242,7 @@
                   <label>Phone Number</label>        
               <ion-item>
               
-                <ion-input type="number" [(ngModel)]="data.phone" name="phone" #phone="ngModel" pattern='[0-9]+' maxlength="15" minlength="10"></ion-input>
+                <ion-input type="number" [(ngModel)]="data.phone" name="phone" #phone="ngModel" pattern='[0-9]+' ></ion-input>
             </ion-item></div> 
                <ion-label class="alert alert-danger" color="danger">
   
@@ -262,11 +264,11 @@
                   <label>Charges</label>        
               <ion-item>
               
-                <ion-input type="number" [(ngModel)]="data.charges" name="charges" #charges="ngModel"></ion-input>
+                <ion-input type="number" [(ngModel)]="data.charges" name="charges" #charges="ngModel" placeholder="$/hour"></ion-input>
             </ion-item></div></ion-col></ion-row>
                        <!-- </ion-list> -->
               </ion-grid>
-</ion-list>
+<!--</ion-list>-->
 
 
  <ion-grid >
@@ -282,9 +284,9 @@
                       <div class="icn-pls"> <ion-icon class="add" name="add-circle" (click)="takePhoto()"></ion-icon></div>
                     </div>
                </ion-col>
-                 <ion-col col-2></ion-col>
+<!--                 <ion-col col-2></ion-col>
              </ion-row>
-               <ion-row>
+               <ion-row>-->
                     <div *ngFor="let document of docloop" >
                 <ion-col col-4>
                        
@@ -293,18 +295,11 @@
                             <div class="icn-crs"><ion-icon name="close-circle" (click)="delete(document._id)"></ion-icon> </div>     
                             
                          
-          <img *ngIf="this.docloop != ''" class="pic" src={{document.name}} >
+          <img *ngIf="this.docloop != ''" class="pic" src={{document.name}}(close)="callbackAfterImageViewerCloses()" #myImage (click)="presentImage(myImage)">
                             </div>
                  </ion-col>
                    </div>
-                
-               
-                   
-             
-                   
-                  
-               
-               
+              
                </ion-row>
 <!--               <ion-col col-4>
                   <div class="acheivmnt">
@@ -356,5 +351,7 @@
   </ion-col>
    </ion-row>
  </ion-grid>
+    </ion-list>
     </form>
+    
 </ion-content>

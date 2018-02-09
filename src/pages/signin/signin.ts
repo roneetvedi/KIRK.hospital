@@ -48,8 +48,8 @@ export class SigninPage {
    }
 
   signin_form(signin){
-  	
-  this.loading.present().then(() => {
+//  	alert("kfgdsgf")
+//  this.loading.present().then(() => {
 
 var data={
   email:signin.value.email,
@@ -61,7 +61,7 @@ console.log(this.common.options);
 var optionss = this.common.options;
 this.http.post(this.common.base_url +'users/login', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
     console.log(data);
-    this.Loading.dismiss();
+//    this.Loading.dismiss();
     if(data.success == true){
         this.chkid = JSON.stringify(data.userinfo);
 //        alert(this.chkid);
@@ -90,7 +90,7 @@ this.chkuser();
    toast.present();
     }
   },err => {
-       this.Loading.dismiss();
+//       this.Loading.dismiss();
      let toast = this.toastCtrl.create({
     message: "Invalid Credentials",
     duration: 3000,
@@ -98,7 +98,7 @@ this.chkuser();
   });
    toast.present();
   })
-  })
+//  })
 } 
 serializeObj(obj) {
     var result = [];
@@ -172,17 +172,14 @@ this.http.post(this.common.base_url + 'allinoneexist', Serialized, optionss).map
      position: 'middle'
    });
     toast.present();
-   
-      
-    
-    
-     }else{
+    }else{
        //alert(data.msg)
 //      this.navCtrl.push(ProcessPage);
+     this.Loading.dismiss();
           localStorage.setItem('FBDATA', JSON.stringify(data.data));
         localStorage.setItem('USERID',data.data.id);
        let toast = this.toastCtrl.create({
-     //message: data.message,
+     message: data.message,
      duration: 3000,
      position: 'middle'
    });

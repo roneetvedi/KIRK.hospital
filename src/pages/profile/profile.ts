@@ -9,6 +9,7 @@ import {CommonProvider} from '../../providers/common/common';
 import { ToastController } from 'ionic-angular';
 import {LoadingController} from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular';
+import { ImageViewerController } from 'ionic-img-viewer';
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html'
@@ -18,31 +19,32 @@ export class ProfilePage {
     content: 'Please wait...'
     
   });
-     loading = this.Loading;
-public userid='';
-public showdata='';
-public prfimage ='';
-public editname=''; 
-public edittype='';
-public editcity='';
-public editcountry='';
-public editstatus='';
-public editdescription='';
-public editdrom='';
-public editto='';
-public edittime='';
-public editexp='';
-public editedu='';
-public editcharges='';
-public editawrd='';
-public editdocs='';
+    loading = this.Loading;
+    public userid='';
+    public showdata='';
+    public prfimage ='';
+    public editname=''; 
+    public edittype='';
+    public editcity='';
+    public editcountry='';
+    public editstatus='';
+    public editdescription='';
+    public editdrom='';
+    public editto='';
+    public edittime='';
+    public editexp='';
+    public editedu='';
+    public editcharges='';
+    public editawrd='';
+    public editdocs='';
+    _imageViewerCtrl: ImageViewerController;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,public http:Http,public events:Events,
     public common : CommonProvider, private toastCtrl: ToastController,
-    public actionSheetCtrl: ActionSheetController, 
+    public actionSheetCtrl: ActionSheetController,public imageViewerCtrl: ImageViewerController,
     public loadingCtrl:LoadingController, public menu: MenuController) {
   
-    
+        this._imageViewerCtrl = imageViewerCtrl;
         this.menu.swipeEnable(false);
     this.userid = localStorage.getItem("USERID");
     console.log(this.userid);
@@ -50,8 +52,11 @@ public editdocs='';
   }
   
  show_details(){
-//     alert("showing details");
-this.loading.present().then(() => {
+var Loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+    
+  });
+Loading.present().then(() => {
 
     var data = {
       id :this.userid,
@@ -66,7 +71,7 @@ var optionss = this.common.options;
     this.http.post(this.common.base_url +'users/userdetailbyid', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
 //        alert(JSON.stringify(data));
     console.log(data);
-    this.Loading.dismiss();
+    Loading.dismiss();
       if(data.error == 0){
 
         this.showdata=data.data;
@@ -125,7 +130,14 @@ var optionss = this.common.options;
    gtnotifctn(){
     this.navCtrl.push(NotificationPage);
    }
-   
+ presentImage(youImage) {
+//      alert("ncj");
+    const imageViewer = this._imageViewerCtrl.create(youImage);
+    imageViewer.present();
+ 
+    setTimeout(() => imageViewer.dismiss(),3000);
+    imageViewer.onDidDismiss(() => console.log('Viewer dismissed'));
+  } 
 
  
 }

@@ -38,6 +38,9 @@ import { AboutusPage } from '../pages/aboutus/aboutus';
 import { ContactusPage } from '../pages/contactus/contactus';
 import { InformationPage } from '../pages/information/information';
 import { Ionic2RatingModule } from 'ionic2-rating';
+import { DropboxProvider } from '../providers/dropbox/dropbox';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
+import {ImageZoomModule} from 'angular2-image-zoom';
 @NgModule({
   declarations: [
     MyApp,
@@ -72,6 +75,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
       HttpModule,
         CalendarModule,
         Ionic2RatingModule,
+        IonicImageViewerModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -111,7 +115,9 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     TwitterConnect,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CommonProvider
+    CommonProvider,
+    DropboxProvider,
+    ImageZoomModule
   ]
 })
 export class AppModule {}

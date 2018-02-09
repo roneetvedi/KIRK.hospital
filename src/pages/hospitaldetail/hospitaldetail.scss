@@ -27,7 +27,7 @@ button.backbtn {
     color: #fff;
     font-size: 24px;
     }    
-
+/*
 .prfl-detl{
     background-image:  url("../assets/imgs/banner6.jpg");
     background-size: cover;
@@ -35,7 +35,7 @@ button.backbtn {
     width: 100%;
     float: left;
     background-repeat: round;
-}
+}*/
 
 .search{
     padding: 3px;
@@ -71,7 +71,7 @@ h6 {
 .pin{
     color: #e85858;
     font-size: 21px;
-    margin-top: 15px;
+    margin-top: 46px;
 
 }
 
@@ -87,12 +87,12 @@ h6 {
 }
 
 h5{
-    margin-top: 1.6rem;
+    margin-top: 48px;
     margin-bottom: 1rem;
     font-weight: normal;
     line-height: 1.2;
     color: #fff;
-    margin-left: -14px;
+    margin-left: -7px;
     font-size: 15px;
 }
 
@@ -166,7 +166,7 @@ p.dtl {
 }
 
 .multistars {
-    margin: 12px 0 0 108px;
+    margin: 12px 0 0 55px;
 }
 }
 
@@ -188,4 +188,64 @@ button.galbtn{
         margin-left: -57px;
         margin-bottom: 0;
     }
+    
+    .heart-bx1{
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #326297; 
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #e85858;
+    float: right;
+        
+
+.heart1{
+    color:#fff;
+    font-size: 20px;
+    position: absolute;
+    top: 4px;
+    left: 5px;
+}}
+    
+    .ovrly_hrt {
+    width: 100%;
+    float: left;
+        top: 0;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    height: 98%;
+}
+
+    .prfl-detl{
+        position: relative;
+        overflow: hidden;
+            height: 134px;
+    
+        .dtl-image{
+    width: 100%;
+    height: 100%;
+        }
+        
+    ion-grid.dtl-bx.grid {
+    position: absolute;
+    top: 0;
+}}
+    
+    ul {
+  padding: 0px;
+  margin-top:44px;
+ 
+  &.rating li {
+    padding: 5px 2px !important;
+    background: none;
+    color: #ffb400;
+ 
+    ion-icon {
+      font-size: 26px;
+    }
+  }
+}
+    
+    
 }

@@ -163,9 +163,9 @@ h3 {
     background-color: #fff;
     box-shadow: 0px 0px 13px -5px #dadada;
 
-    .item-inner {
+/*    .item-inner {
          border-bottom: none !important; 
-    }
+    }*/
 
     label{
       font-size: 15px;
@@ -239,7 +239,14 @@ img.achv {
     padding: 10px 0px;
     margin-top: 10px;
     border-bottom: 4px solid #f3f3f3;
-}
+    
+/*    .text-input{
+            border-bottom: 1px solid #dedede;
+}*/
+
+
+    }
+
 
 h3 {
     font-size: 20px;
@@ -363,12 +370,14 @@ h5{
    .upldimg {
     position: relative;
     overflow: hidden;
-    width: 89px;
+    width: 93px;
     height: 96px;
 /*    border:1px solid;*/
     border-style: dotted;
-        margin-left: 9px;
-    margin-bottom: -25px;
+        margin-left: 6px;
+   margin-top: -12px;
+    margin-bottom: -10px;
+    
 img.pic {
     width: 100%;
     height: 100%;
@@ -388,4 +397,21 @@ img.upld {
         font-weight: bold;
     }   
     }
+    
+    
+ 
+
+ 
+.text-input{
+white-space: normal;
+ 
+    }
+    
+    ion-textarea{
+     border-bottom: 1px solid #dedede;
+}
+
+.icn-crs{
+        position: absolute;
+}
  }

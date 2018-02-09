@@ -10,7 +10,7 @@ page-list {
     float: left;
     position: absolute;
     background: rgba(0, 0, 0, 0.4);
-    height: 49%;
+    height: 32%;
 }
 .toolbar-background{
         background: linear-gradient(left,#26568c,#91c2ff);
@@ -121,7 +121,7 @@ h4 {
 .pin{
     color: #e85858;
     font-size: 21px;
-    margin-top: 15px;
+    margin-top: 38px;
 
 }
 
@@ -133,11 +133,11 @@ h4 {
 .multistars {
     // margin: 12px 0 0 40px;
     text-align: right;
-    margin-top: 12px;
+    margin-top: 40px;
 }
 
 h5{
-    margin-top: 1.6rem;
+    margin-top: 42px;
     margin-bottom: 1rem;
     font-weight: normal;
     line-height: 1.2;
@@ -181,6 +181,23 @@ h5{
   
 }
 }
+
+
+    ul {
+  padding: 0px;
+  margin-top:44px;
+ 
+  &.rating li {
+    padding: 5px 2px !important;
+    background: none;
+    color: #ffb400;
+ 
+    ion-icon {
+      font-size: 26px;
+    }
+  }
+}
+
 }
 
 .toolbar-title {

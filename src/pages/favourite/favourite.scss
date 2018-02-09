@@ -43,13 +43,45 @@ img.filter {
 }
 
 .prfl-detl{
-    background-image:  url("../assets/imgs/banner6.jpg");
+/*    background-image:  url("../assets/imgs/banner6.jpg");
     background-size: cover;
     margin-bottom: 1px;    
     width: 100%;
     float: left;
-    background-repeat: round;
+    background-repeat: round;*/
+    position: relative;
+    overflow: hidden;
+    height: 129px;
+  
+    .favbox.grid {
+    position: absolute;
+    top: 1px;
 }
+
+img.favimg {
+    width: 100%;
+    height: 100%;
+}
+}
+
+.heart-bx{
+    position: relative;
+    overflow: hidden;
+    /* border: 1px solid; */
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #326297;
+    float: right;
+        
+
+.heart{
+    color:#ffea00;
+    font-size: 20px;
+    position: absolute;
+    top: 5px;
+    left: 6px;
+}}
 
 .prfl-detl1{
     background-image:  url("../assets/imgs/banner7.jpg");
@@ -103,7 +135,7 @@ h4 {
 .pin{
     color: #e85858;
     font-size: 21px;
-    margin-top: 15px;
+    margin-top: 40px;
 
 }
 
@@ -115,11 +147,11 @@ h4 {
 .multistars {
     // margin: 12px 0 0 40px;
     text-align: right;
-    margin-top: 12px;
+    margin-top: 40px;
 }
 
 h5{
-    margin-top: 1.6rem;
+    margin-top: 43px;
     margin-bottom: 1rem;
     font-weight: normal;
     line-height: 1.2;
@@ -137,7 +169,6 @@ h5{
     background-color: #e85858;
     float: right;
         
-
 .heart1{
     color:#fff;
     font-size: 20px;
@@ -145,4 +176,13 @@ h5{
     top: 4px;
     left: 5px;
 }}
+
+.ovrly_hrt {
+    width: 100%;
+    float: left;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    height: 100%;
+    top:1px;
+}
 }

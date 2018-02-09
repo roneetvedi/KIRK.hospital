@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,NgModule  } from '@angular/core';
 import { NavController, NavParams,App } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { MenuController } from 'ionic-angular';
@@ -27,18 +27,21 @@ export class HospitaldetailPage {
     detailhosp;
     hospgallary;
       hospid;
-     hosptitle;
-     favdata;
+     hosptitle;url;
+     public review='';
+     public reviewdata='';
+     public favdata='';
     public hospcity ='';
     public hospcountry ='';
     public hospdescription ='';
-      
+      public hospbanner='';
+      public hospitalid='';
   constructor(public navCtrl: NavController, public menu: MenuController,
       public navParams:NavParams, public app:App,
       public modalCtrl: ModalController,public http:Http,public common:CommonProvider, public loadingCtrl:LoadingController,public toastCtrl:ToastController ) {
     this.menu.swipeEnable(false);
     this.hospital_id= this.navParams.get('hosp_id');
-    this.user_id = this.navParams.get('usr_id');
+    this.user_id = localStorage.getItem("USERID");
 //    alert(this.hospital_id);
     this.hospdetail();
   }
@@ -47,8 +50,8 @@ export class HospitaldetailPage {
     this.navCtrl.push(ListPage);
    }
 
-   modelrate() {
-    let modal = this.modalCtrl.create(RatePage);
+   modelrate(ids) {
+    let modal = this.modalCtrl.create(RatePage,{review:ids});
     modal.present();
   }
 
@@ -58,8 +61,10 @@ export class HospitaldetailPage {
    hospdetail(){
 //        alert("detailing");
        var data = {
+           user_id:this.user_id,
        id:this.hospital_id
      }
+      this.loading.present().then(() => {
      console.log(data);
     console.log(this.common.options);
 var optionss = this.common.options;
@@ -72,14 +77,28 @@ var optionss = this.common.options;
     this.Loading.dismiss();
       if(data.error == '0'){
 //       alert("data displayed");
-          this.detailhosp = data.data;
-          this.hosptitle = data.data.title;
-          this.hospcity = data.data.city;
-          this.hospcountry = data.data.country;
-          this.hospdescription = data.data.description;
-          this.hospgallary = data.data.image.split(',');
-          console.log(this.hospgallary);
-       console.log(this.detailhosp);
+          this.review=data.avr_rating;
+          localStorage.setItem('AVG',data.avr_rating);
+          this.detailhosp = data.data[0];
+          console.log(this.detailhosp);
+          this.hospitalid = data.data[0]._id;
+          localStorage.setItem('HOSPID',this.hospitalid);
+          this.hosptitle = data.data[0].title;
+          console.log(this.hosptitle);
+          this.hospcity = data.data[0].city;
+          this.hospbanner=data.data[0].bannerimage;
+          console.log(this.hospbanner);
+          this.hospcountry = data.data[0].country;
+          this.hospdescription =data.data[0].description;
+          this.favdata=data.likestatus;
+          console.log(this.favdata);
+          this.hospgallary = data.data[0].image.split(',');
+           this.url = this.common.banner_url;
+           this.reviewdata=data.data[0].reviews_info;
+           console.log(this.reviewdata);
+
+//          console.log(this.hospgallary);
+//       console.log(this.detailhosp);
       }else{
         //alert(data.message);
   let toast = this.toastCtrl.create({
@@ -91,7 +110,7 @@ var optionss = this.common.options;
       }
 
     })
-  
+      })
    }
    serializeObj(obj){
     var result = [];
@@ -101,11 +120,15 @@ var optionss = this.common.options;
     return result.join("&");
   }
   favourite(){
-//      alert("mera favourite");
+  var Loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+    
+  });
       var data = {
           hospital_id:this.hospital_id,
           user_id:this.user_id
       }
+       Loading.present().then(() => {
 //      alert(JSON.stringify(data));
       var optionss = this.common.options;
 
@@ -114,10 +137,17 @@ var optionss = this.common.options;
     
     this.http.post(this.common.base_url +'favorite/add', Serialized, optionss).map(res=>res.json()).subscribe(data=>{
     console.log(data);
-    this.Loading.dismiss();
+    Loading.dismiss();
       if(data.error == '0'){
 //       alert("data displayed");
-       this.favdata=data.data;
+       this.favdata=data.status;
+       console.log(this.favdata);
+       let toast = this.toastCtrl.create({
+     message: data.message,
+     duration: 3000,
+     position: 'middle'
+   });
+    toast.present();
       }else{
         //alert(data.message);
   let toast = this.toastCtrl.create({
@@ -129,5 +159,7 @@ var optionss = this.common.options;
       }
 
     })
+    })
   }
+
 }

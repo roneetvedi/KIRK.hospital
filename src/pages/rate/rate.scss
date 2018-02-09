@@ -96,4 +96,24 @@ button.backbtn {
     }
 }
 
+    ul {
+  padding: 0px;
+ 
+  &.rating li {
+    padding: 5px 2px !important;
+    background: none;
+    color: #ffb400;
+ 
+    ion-icon {
+      font-size: 26px;
+    }
+  }
+}
+
+.star{
+    background-color: white;
+    padding: 1px 65px;
+    margin: 0 auto;
+    display: table;
+}
 }

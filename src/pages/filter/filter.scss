@@ -9,6 +9,12 @@ page-filter {
         margin-top: 7px;
         float: right;
     }
+    
+    .fltrbtn{
+    background-color: #326297;
+    margin-bottom: 12px;
+    border-radius: 7px;
+}
 
     .btnblu {
         color: #fff;
@@ -36,7 +42,9 @@ page-filter {
 h5 {
     color: #fff;
     font-size: 22px;
-    margin-left: 27px;
+      margin: 17px auto;
+    display: table;
+}
     }
 
  .fltrlist {
@@ -94,4 +102,5 @@ ion-label {
 // .item-radio-checked ion-label {
 //     color: #f5f5f5;
 // }
-}
+
+

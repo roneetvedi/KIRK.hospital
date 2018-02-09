@@ -7,12 +7,20 @@ import { ListPage } from '../list/list';
   templateUrl: 'filter.html'
 })
 export class FilterPage {
-
+    public rating="";
   constructor(public navCtrl: NavController) {
 
   }
  
   backtolist(){
     this.navCtrl.popTo(ListPage);
+   }
+   backtomain(){
+       this.navCtrl.push(ListPage);
+   }
+   backbyrating(){
+//       alert("fd");
+       this.rating="rating";
+       this.navCtrl.push(ListPage, {rating: this.rating});
    }
 }

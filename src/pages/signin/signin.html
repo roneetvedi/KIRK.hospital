@@ -9,13 +9,13 @@
 
 <ion-content class="home-bg">
      <form #signinForm="ngForm">
-  <div style="width: 100%; height:10px;"></div>
+  <div style="width: 100%; height:13px;"></div>
 <img src="assets/imgs/logo.png">
 
 
-<ion-grid class="sign">
+<!--<ion-grid class="sign">
   <ion-row>
-  <ion-col col-12>
+  <ion-col col-12>-->
    
     <ion-list class="sgnp-list">
         <ion-grid class="inpt-signp">
@@ -64,10 +64,10 @@
                    </ion-col></ion-row> 
                  
 </ion-grid>
-</ion-list>
+<!--</ion-list>-->
 
-      <button ion-button full color="blue" class="btnblu" (click)="signin_form(signinForm)" [disabled]="!signinForm.form.valid">Sign In</button>
-      <h6>Don’t have an Account ?<span class="signn" (click)="sgnup()"> Sign Up</span></h6>
+<button ion-button full type="submit" color="blue" class="btnblu" (click)="signin_form(signinForm)" [disabled]="!signinForm.form.valid">Sign In</button>
+<h6>Don’t have an Account ?<span class="signn" (click)="sgnup()"> Sign Up</span></h6>
       <h3>or</h3>
       <h4>Connect with us</h4>
       <ul class="tags">
@@ -79,9 +79,10 @@
         </ul>
 
         <h5 (click)="frgt()"><a href="#">Forgot password?</a></h5>
-  </ion-col>
+    </ion-list>
+<!--  </ion-col>
  
   </ion-row>
-</ion-grid>
+</ion-grid>-->
      </form>
 </ion-content>

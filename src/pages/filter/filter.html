@@ -1,6 +1,7 @@
 
 
 <ion-content class="menu size_adj">
+<!--    <form #filterForm="ngForm">-->
   <button  class="backbtn" (click)="backtolist()" pull-right>
     <ion-icon name="close"></ion-icon>
 </button>
@@ -10,14 +11,14 @@
     <ion-col col-12>
       <h5>Select Category </h5>
 
-      <ion-list class="fltrlist" radio-group [(ngModel)]="relationship">
+<!--      <ion-list class="fltrlist" radio-group >
         <ion-item>
-            <ion-radio value="Rating" ></ion-radio>
-          <ion-label>Rating</ion-label>
+         <ion-radio value="Rating" ></ion-radio>
+<a href="#"><ion-label>Rating</ion-label></a>
         </ion-item>
         <ion-item>
-            <ion-radio value="Location" ></ion-radio>
-          <ion-label>Location</ion-label>
+ <ion-radio value="Location" ></ion-radio>
+<a href="#">   <ion-label (click)="backtomain()">Location</ion-label></a>
           
         </ion-item>
 
@@ -27,11 +28,16 @@
           
         </ion-item>
        
-      </ion-list>
+      </ion-list>-->
+<div class="fltrlist">
+     <button class="fltrbtn" ion-button full (click)="backbyrating()" >Rating</button>
+       <button (click)="backtomain()" class="fltrbtn" ion-button full>Location</button>
+</div>
+
     </ion-col>
   </ion-row>
 </ion-grid>
 <div style="width:100%; height:127px;"></div>
-<button ion-button full color="blue" class="btnblu" (click)="profile()">Submit</button>
-
+<!--<button ion-button full color="blue" class="btnblu" (click)="profile(filterForm)">Submit</button>-->
+<!--</form>-->
 </ion-content>
